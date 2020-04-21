@@ -27,8 +27,12 @@ p{
 
 /* Texto que indica con qué usuario se ha iniciado sesión */
 header .textoInicial{
+    margin-top: 14px;
     color: white;
-    margin-left: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 header .container{
@@ -39,8 +43,10 @@ header .container{
 }
 
 header .formularios{
+    width: 500px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 /* Botones en el header */
 header .btn{

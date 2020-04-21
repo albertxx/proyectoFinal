@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/20bcd05352.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../View/css/paginaPrincipal.css">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
-    <script src="https://kit.fontawesome.com/20bcd05352.js" crossorigin="anonymous"></script>
     <title>Ivalice</title>
 </head>
 <body>
@@ -24,10 +24,13 @@
 
         <!-- Botones para navegar por las diferentes páginas de la app -->
         <div class="formularios">
-            <form action="../View/crearPersonaje.php">
+            <!-- Botón crear personaje -->
+            <form action="../Controller/c.crearPersonaje.php">
+                <input type="hidden" name="usuario" value="<?= $data['usuario']->getNick() ?>">
                 <input type="submit" value="Crear personaje" class="btn">
             </form>
 
+            <!-- Botón listado de personajes -->
             <form action="../View/p.html">
                 <input type="submit" value="Listado de personajes" class="btn">
             </form>

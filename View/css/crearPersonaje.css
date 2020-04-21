@@ -1,0 +1,68 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #191919;
+}
+
+header{
+    background-color: #3b3a3a;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: sans-serif;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.textoInicial{
+    margin-top: 14px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+header .oro{
+    color: white;
+    margin-right: 13px;
+}
+header .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+header .formularios{
+    display: flex;
+    flex-direction: row;
+    margin-left: -100px;
+}
+
+header .formularios form{
+    margin:20px;
+}
+
+.btnUsuario{
+    border: transparent;
+    background-color: transparent;
+    color: #3498db;
+    
+}
+/* Botones en el header */
+header .btn{
+    border:0;
+    background: none;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
