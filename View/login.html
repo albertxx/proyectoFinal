@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivalice</title>
+    <link rel="stylesheet" href="../View/css/login.css">
+    <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
+    <script src="../jquery-3.4.1.js"></script>
+    <!-- Script para comprobar si el usuario está siendo utilizado al registrarse -->
+    <script>
+        // Función para comprobar si el usuario introducido al registrarse ya está siendo usado
+        function comprobarUsuario() {
+            $("#cargando").show();
+            jQuery.ajax({
+            url: "../Controller/c.comprobarRegistro.php",
+            data:'nick='+$("#registroNick").val(),
+            type: "POST",
+            timeout: 5000,
+            success:function(data){
+                if(data == false){
+                    $("#estadoRegistro").html("Usuario no Disponible. Ya está siendo utilizado.").css("color", "red");
+                    $("#btnSubmit").attr('disabled', 'disabled');
+                }else if(data == "vacio"){
+                    $("#btnSubmit").attr('required', 'true');
+                }else{
+                    $("#estadoRegistro").html("Usuario Disponible.").css("color", "lightgreen");
+                    $("#btnSubmit").removeAttr('disabled');
+                }
+                $("#cargando").hide();
+            },
+            error:function(){
+                $("#error").html("Ups, parece que ha habido un error al registrarse. ¡Lo sentimos!");
+            }
+            });
+        }
+
+        
+        // Función para comprobar si el usuario introducido al iniciar sesión y la contraseña son los correctos
+        function comprobarInicioSesion() {
+            var params = {
+                nick: $("#inicioNick").val(),
+                pwd: $("#inicioPwd").val()
+            };
+
+            jQuery.ajax({
+
+            url: "../Controller/c.inicioSesion.php",
+            data: params,
+            type: "POST",
+            timeout: 5000,
+            success:function(data){
+                if(data != false){
+                    var usuario = jQuery.parseJSON(data);
+                    $(location).attr('href', "../Controller/c.guardarUsuario.php?nick=" + usuario.nick);
+                }else{
+                    $("#estadoInicio").html("Usuario o contraseña incorrectos.");
+                }
+            },
+            error:function(){
+                $("#error").html("Ups, parece que ha habido un error al iniciar sesión. ¡Lo sentimos!");
+            }
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>¿Serás capaz de superar los desafíos de Ivalice?</h1>
+    </header>
+
+    <span id="error"></span>
+
+    <div class="container">
+        <form class="registro" action="../Controller/c.registrarUsuario.php" method="post">
+            <h1>Registrarse</h1>
+            <input type="text" placeholder="Username" class="btn btn-nick" id="registroNick" name="registroNick" onblur="comprobarUsuario()" required>
+            <!-- Mensajes de comprobación de nick -->
+            <span id="estadoRegistro"></span>
+            <p class="cargando"><img src="../View/img/cargando.gif" style="display: none;" alt=""></p>
+
+            <input type="password" placeholder="Password" class="btn btn-pwd" name="pwd" id="pwd" required minlength="6" maxlength="18">
+            <input type="text" placeholder="Name" class="btn" name="nombre" required>
+            <input type="text" placeholder="Last name" class="btn" name="apellidos" required>
+            <input type="email" placeholder="email" class="btn" name="correo" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" required>
+            <input type="submit" value="Registrarse" id="btnSubmit">
+        </form>
+
+        <div class="inicioSesion">
+            <h1>Iniciar sesión</h1>
+            <input type="text" placeholder="Username" class="btn" id="inicioNick" name="inicioNick" required>
+            <input type="password" placeholder="Password" class="btn" name="inicioPwd" id="inicioPwd" required maxlength="18">
+           <button id="btnS" onclick="comprobarInicioSesion()">
+               Iniciar Sesión
+           </button>
+           <span id="estadoInicio"></span>
+        </div>
+    </div>
+</body>
+</html>

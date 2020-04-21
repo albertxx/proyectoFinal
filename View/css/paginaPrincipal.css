@@ -1,0 +1,126 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #191919;
+}
+
+/* Encabezado de la página */
+header{
+    background-color: #3b3a3a;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+    text-align: center;
+    flex-wrap: nowrap;
+}
+
+header .oro{
+    color: white;
+    margin-right: 13px;
+}
+
+p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Texto que indica con qué usuario se ha iniciado sesión */
+header .textoInicial{
+    color: white;
+    margin-left: 20px;
+}
+
+header .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+header .formularios{
+    display: flex;
+    flex-direction: row;
+}
+/* Botones en el header */
+header .btn{
+    border:0;
+    background: none;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
+
+.btnUsuario{
+    border: transparent;
+    background-color: transparent;
+    color: #3498db;
+    
+}
+
+header .oro{
+    color: white;
+    margin-right: 13px;
+}
+
+.misiones{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left:50px;
+    margin-top:30px;
+}
+
+.posicionMisiones{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    justify-content: center;
+}
+
+.mision{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.misiones .imagenesMisiones{
+    margin-right: 20px;
+}
+
+.tituloMision{
+    color:rgb(228, 18, 165);
+    margin-left: 70px;
+}
+
+@media (max-width: 650px) {
+    header{
+        height: 300px;
+    }
+
+    header{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header .container img{
+        height: 160px;
+        width: 190px;
+    }
+}

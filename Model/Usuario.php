@@ -1,0 +1,188 @@
+<?php 
+
+require_once "../Model/UsuariosBD.php";
+
+class Usuario{
+    private $nick;
+    private $pwd;
+    private $nombre;
+    private $apellidos;
+    private $correo;
+    private $oro;
+
+    /**
+     * Class constructor.
+     */
+    public function __construct($nick, $pwd, $nombre, $apellidos, $correo, $oro){
+
+        $this->nick = $nick;
+        $this->pwd = $pwd;
+        $this->nombre = $nombre;
+        $this->apellidos = $apellidos;
+        $this->correo = $correo;
+        $this->oro = $oro;
+    }
+
+
+    // Registrar usuarios en la bd
+    function registarUsuario(){
+        $conexion = UsuariosBD::connectDB();
+        $insertarUsuario = "INSERT INTO usuarios (nick, pwd, nombre, apellidos, email, oro) VALUES ('$this->nick', '$this->pwd', '$this->nombre', '$this->apellidos', '$this->correo', 0)";
+        $conexion->exec($insertarUsuario);
+    }
+
+    // Modificar información del usuario en la bd
+    // Recibe el antiguo nick en caso de ser modificado
+    function modificarUsuario($nickAntiguo){
+        $conexion = UsuariosBD::connectDB();
+        $modificarUsuario = "UPDATE usuarios SET nick='".$this->nick."', pwd='".$this->pwd."', nombre='".$this->nombre."', apellidos='".$this->apellidos."', email='".$this->correo."', oro='".$this->oro."' WHERE nick='".$nickAntiguo."';";
+        $conexion->exec($modificarUsuario);
+    }
+    
+    // Recoger todos los usuarios de la base de datos
+    public static function getUsuarios(){
+        $conexion = UsuariosBD::connectDB();
+        $registros = "SELECT * from usuarios";
+        $consulta = $conexion->query($registros);
+        $usuarios = [];
+
+        while ($usuario = $consulta->fetchObject()) {
+            $usuarios[] = new Usuario($usuario->nick, $usuario->pwd, $usuario->nombre, $usuario->apellidos, $usuario->email, $usuario->oro);
+        }
+
+        return $usuarios;
+    }
+
+    // Recoger un usuario de la base de datos
+    public static function getUsuarioById($nick){
+        $conexion = UsuariosBD::connectDB();
+        $seleccion = "SELECT nick, pwd, nombre, apellidos, email, oro FROM usuarios WHERE nick=\"".$nick."\"";
+        $consulta = $conexion->query($seleccion);
+        $registro = $consulta->fetchObject();
+        $usuario = new Usuario($registro->nick, $registro->pwd, $registro->nombre, $registro->apellidos, $registro->email, $registro->oro);
+    
+        return $usuario;
+    }
+
+    /**
+     * Get the value of nick
+     */ 
+    public function getNick()
+    {
+        return $this->nick;
+    }
+
+    /**
+     * Set the value of nick
+     *
+     * @return  self
+     */ 
+    public function setNick($nick)
+    {
+        $this->nick = $nick;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pwd
+     */ 
+    public function getPwd()
+    {
+        return $this->pwd;
+    }
+
+    /**
+     * Set the value of pwd
+     *
+     * @return  self
+     */ 
+    public function setPwd($pwd)
+    {
+        $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nombre
+     */ 
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set the value of nombre
+     *
+     * @return  self
+     */ 
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of apellidos
+     */ 
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * Set the value of apellidos
+     *
+     * @return  self
+     */ 
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of correo
+     */ 
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * Set the value of correo
+     *
+     * @return  self
+     */ 
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of oro
+     */ 
+    public function getOro()
+    {
+        return $this->oro;
+    }
+
+    /**
+     * Set the value of oro
+     *
+     * @return  self
+     */ 
+    public function setOro($oro)
+    {
+        $this->oro = $oro;
+
+        return $this;
+    }
+}
+
+?>

@@ -1,0 +1,130 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #191919;
+}
+
+.contenedor-formulario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.linea{
+    border: 0.25px solid;
+    border-color: rgb(228, 18, 165);
+    width: 400px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.formulario .btn{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
+
+.formulario .btn:focus{
+    width: 280px;
+    border-color: rgb(228, 18, 165);
+}
+
+.btnSubmit{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.btnSubmit:hover{
+    background-color:rgb(228, 18, 165);
+}
+
+#estadoRegistro{
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    color: rgb(228, 18, 165);
+    display: flex;
+    justify-content: center;
+}
+
+header{
+    background-color: #3b3a3a;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: sans-serif;
+    justify-content: space-between;
+    text-align: center;
+}
+
+p{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header .oro{
+    color: white;
+    margin-right: 13px;
+}
+header .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+header .formularios{
+    display: flex;
+    flex-direction: row;
+    margin-left: -100px;
+}
+
+header .formularios form{
+    margin:20px;
+}
+
+.btnUsuario{
+    border: transparent;
+    background-color: transparent;
+    color: #3498db;
+    
+}
+/* Botones en el header */
+header .btn{
+    border:0;
+    background: none;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
