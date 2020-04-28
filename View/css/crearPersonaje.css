@@ -180,7 +180,7 @@ label[for=fotoPersonaje]:before {
 }
 
 /* Botón submit del formulario de .formulario */
-.formulario input[type = "submit"]{
+.formulario .btnSubmit{
     border:0;
     background: none;
     display: block;
@@ -191,11 +191,10 @@ label[for=fotoPersonaje]:before {
     width: 200px;
     outline: none;
     color: white;
-    border-radius: 24px;
     transition: 0.25s;
 }
 
 /* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
-.formulario input[type = "submit"]:hover{
+.formulario .btnSubmit:hover{
     background-color:rgb(228, 18, 165);
 }

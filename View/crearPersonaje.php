@@ -25,9 +25,13 @@ require_once "../Model/Usuario.php";
         var datosClase = JSON.parse(data);
         $(".descripcionClases").html(datosClase.descripcion);
         $("#vida").html(datosClase.vida);
+        $("#vidaInput").val(datosClase.vida);
         $("#atk").html(datosClase.atk);
+        $("#atkInput").val(datosClase.atk);
         $("#def").html(datosClase.def);
+        $("#defInput").val(datosClase.def);
         $("#magia").html(datosClase.magia);
+        $("#magiaInput").val(datosClase.magia);
     },
     error:function(){
         
@@ -66,12 +70,14 @@ require_once "../Model/Usuario.php";
         <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getOro() ?></span>
     </div>
 </header>
-    <form action="" method="post" class="formulario">
+    <form action="../Controller/c.crearPersonaje.php" method="post" class="formulario">
         <div class="informacionFormulario">
+            <!-- Input del nombre del personaje -->
             <div class="inputs">
-                <label>Nombre de tu personaje: </label><input type="text" name="btn" id="btn" class="btn" palceholder="Nombre de tu personaje">
+                <label>Nombre de tu personaje: </label><input type="text" name="nombrePersonaje" id="nombrePersonaje" class="btn" palceholder="Nombre de tu personaje">
             </div>
 
+            <!-- Selección de clases -->
             <select name="clases" id="clases" onclick="mostrarDescripcion()">
             <?php 
                 for ($i=0; $i < count($data['clases']); $i++) { 
@@ -85,6 +91,7 @@ require_once "../Model/Usuario.php";
             ?>
             </select>
 
+            <!-- Input de la foto del personaje -->
             <div class="inputs">
                 <span class="fotoPersonaje">
                     <input type="file" name="fotoPersonaje" id="fotoPersonaje">
@@ -92,8 +99,12 @@ require_once "../Model/Usuario.php";
                 
                 <label for="fotoPersonaje" id="labelPersonaje">Añada una foto de su personaje.</label>
             </div>
+
+        <input type="submit" value="Crear personaje" class="btnSubmit">
         </div>
         
+
+        <!-- Bloque que contiene toda la información de la clase seleccionada -->
         <div class="infoClases">
             <div class="descripcionClases"></div>
 
@@ -102,15 +113,18 @@ require_once "../Model/Usuario.php";
 
             <div class="stats">
                 <img src='../View/img/stats/vida1.png'> &nbsp; <span id="vida"></span>
+                <input type="hidden" name="vida" id="vidaInput">
                 <br>
                 <img src="../View/img/stats/atk1.png" alt=""> &nbsp; <span id="atk"></span>
+                <input type="hidden" name="atk" id="atkInput">
                 <br>
                 <img src="../View/img/stats/def1.png" alt=""> &nbsp; <span id="def"></span>
+                <input type="hidden" name="def" id="defInput">
                 <br>
                 <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
+                <input type="hidden" name="magia" id="magiaInput">
             </div>
         </div>
-        <!-- <input type="submit" value="Enviar" class="btnSubmit"> -->
     </form>
 
 <script type="application/javascript">
