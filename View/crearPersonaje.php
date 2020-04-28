@@ -22,7 +22,12 @@ require_once "../Model/Usuario.php";
     type: "POST",
     timeout: 5000,
     success:function(data){
-        $(".descripcionClases").html(data).css("border", "2px solid rgb(228, 18, 165)");
+        var datosClase = JSON.parse(data);
+        $(".descripcionClases").html(datosClase.descripcion);
+        $("#vida").html(datosClase.vida);
+        $("#atk").html(datosClase.atk);
+        $("#def").html(datosClase.def);
+        $("#magia").html(datosClase.magia);
     },
     error:function(){
         
@@ -30,7 +35,6 @@ require_once "../Model/Usuario.php";
     });
 }
 </script>
-
 <body>
 <header>
     <div class="container">
@@ -64,7 +68,7 @@ require_once "../Model/Usuario.php";
 </header>
     <form action="" method="post" class="formulario">
         <div class="informacionFormulario">
-            <div class="inputNombre">
+            <div class="inputs">
                 <label>Nombre de tu personaje: </label><input type="text" name="btn" id="btn" class="btn" palceholder="Nombre de tu personaje">
             </div>
 
@@ -80,12 +84,41 @@ require_once "../Model/Usuario.php";
                 }
             ?>
             </select>
-        </div>
 
-        <div class="descripcionClases">
-            
+            <div class="inputs">
+                <span class="fotoPersonaje">
+                    <input type="file" name="fotoPersonaje" id="fotoPersonaje">
+                </span>
+                
+                <label for="fotoPersonaje" id="labelPersonaje">Añada una foto de su personaje.</label>
+            </div>
+        </div>
+        
+        <div class="infoClases">
+            <div class="descripcionClases"></div>
+
+            <br>
+            <br>
+
+            <div class="stats">
+                <img src='../View/img/stats/vida1.png'> &nbsp; <span id="vida"></span>
+                <br>
+                <img src="../View/img/stats/atk1.png" alt=""> &nbsp; <span id="atk"></span>
+                <br>
+                <img src="../View/img/stats/def1.png" alt=""> &nbsp; <span id="def"></span>
+                <br>
+                <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
+            </div>
         </div>
         <!-- <input type="submit" value="Enviar" class="btnSubmit"> -->
     </form>
+
+<script type="application/javascript">
+    jQuery('input[type=file]').change(function(){
+    var filename = jQuery(this).val().split('\\').pop();
+    var idname = jQuery(this).attr('id');
+    $("#labelPersonaje").html(filename);
+    });
+</script>
 </body>
 </html>

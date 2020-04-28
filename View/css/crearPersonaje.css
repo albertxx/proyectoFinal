@@ -83,23 +83,63 @@ header .btn{
     color: white;
 }
 
-.formulario .inputNombre{
+.formulario .inputs{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
+/* Estilo para el input file de la foto del personaje */
+input[type="file"]#fotoPersonaje {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label[for="fotoPersonaje"] {
+    font-size: 14px;
+    color: #fff;
+    background-color: #3498db;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: inline-block;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 15px 40px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+label[for=fotoPersonaje]:before {
+    content: url(../img/upload.png);
+    margin-right: 12px;
+}
+/* Aquí finaliza todo lo relacionado con el estilo del input:file */
+
 .formulario .informacionFormulario{
     display: flex;
     flex-direction: column;
 }
 
-.formulario .descripcionClases{
+.formulario .infoClases{
+    border: 2px solid rgb(228, 18, 165);
     padding: 10px;
     color: white;
     width: 500px;
+    display: flex;
+    flex-direction: column;
+}
 
+.formulario .descripcionClases .stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .formulario select{
