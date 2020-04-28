@@ -1,7 +1,7 @@
 <?php
-require_once("../Model/UsuariosBD.php");
+require_once("../Model/IvaliceBD.php");
 if($_POST['nick'] != "") {
-  $conexion = UsuariosBD::connectDB();
+  $conexion = IvaliceBD::connectDB();
   $consulta = $conexion->query("SELECT * FROM usuarios WHERE nick='".$_POST["nick"]."'");
   $filas = $consulta->rowCount();
   if($filas>0) {

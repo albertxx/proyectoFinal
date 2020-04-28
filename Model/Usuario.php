@@ -1,6 +1,6 @@
 <?php 
 
-require_once "../Model/UsuariosBD.php";
+require_once "../Model/IvaliceBD.php";
 
 class Usuario{
     private $nick;
@@ -26,7 +26,7 @@ class Usuario{
 
     // Registrar usuarios en la bd
     function registarUsuario(){
-        $conexion = UsuariosBD::connectDB();
+        $conexion = IvaliceBD::connectDB();
         $insertarUsuario = "INSERT INTO usuarios (nick, pwd, nombre, apellidos, email, oro) VALUES ('$this->nick', '$this->pwd', '$this->nombre', '$this->apellidos', '$this->correo', 0)";
         $conexion->exec($insertarUsuario);
     }
@@ -34,14 +34,14 @@ class Usuario{
     // Modificar información del usuario en la bd
     // Recibe el antiguo nick en caso de ser modificado
     function modificarUsuario($nickAntiguo){
-        $conexion = UsuariosBD::connectDB();
+        $conexion = IvaliceBD::connectDB();
         $modificarUsuario = "UPDATE usuarios SET nick='".$this->nick."', pwd='".$this->pwd."', nombre='".$this->nombre."', apellidos='".$this->apellidos."', email='".$this->correo."', oro='".$this->oro."' WHERE nick='".$nickAntiguo."';";
         $conexion->exec($modificarUsuario);
     }
     
     // Recoger todos los usuarios de la base de datos
     public static function getUsuarios(){
-        $conexion = UsuariosBD::connectDB();
+        $conexion = IvaliceBD::connectDB();
         $registros = "SELECT * from usuarios";
         $consulta = $conexion->query($registros);
         $usuarios = [];
@@ -55,7 +55,7 @@ class Usuario{
 
     // Recoger un usuario de la base de datos
     public static function getUsuarioById($nick){
-        $conexion = UsuariosBD::connectDB();
+        $conexion = IvaliceBD::connectDB();
         $seleccion = "SELECT nick, pwd, nombre, apellidos, email, oro FROM usuarios WHERE nick=\"".$nick."\"";
         $consulta = $conexion->query($seleccion);
         $registro = $consulta->fetchObject();

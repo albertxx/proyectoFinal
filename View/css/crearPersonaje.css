@@ -6,7 +6,7 @@ body{
 
 header{
     background-color: #3b3a3a;
-    height: 60px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -29,6 +29,7 @@ header .oro{
     color: white;
     margin-right: 13px;
 }
+
 header .container{
     display: flex;
     flex-direction: row;
@@ -65,4 +66,96 @@ header .btn{
     color: white;
     border-radius: 24px;
     transition: 0.5s;
+}
+
+.formulario{
+    padding: 40px;
+    background-color: #191919;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.formulario label{
+    margin-right: 20px;
+    color: white;
+}
+
+.formulario .inputNombre{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario .informacionFormulario{
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario .descripcionClases{
+    padding: 10px;
+    color: white;
+    width: 500px;
+
+}
+
+.formulario select{
+    text-align: center;
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3499db;
+    padding: 14px 10px;
+    width: 100%;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+}
+
+.formulario select option{
+    background-color: #191919;
+}
+/* Botones del formulario */
+.formulario .btn{
+    background: none;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3499db;
+    padding: 14px 10px;
+    width: 150px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+}
+
+/* Cuando se comienza a introducir datos en uno de los inputs del formulario de .formulario */
+.formulario .btn:focus{
+    border-color: rgb(228, 18, 165);
+}
+
+/* Botón submit del formulario de .formulario */
+.formulario input[type = "submit"]{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+/* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
+.formulario input[type = "submit"]:hover{
+    background-color:rgb(228, 18, 165);
 }

@@ -1,7 +1,7 @@
 <?php
 
 require_once "../Model/Usuario.php";
-require_once "../Model/UsuariosBD.php";
+require_once "../Model/IvaliceBD.php";
 
 $data['usuarios'] = Usuario::getUsuarios();
 $nick = $_POST['nick'];

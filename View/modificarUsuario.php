@@ -46,7 +46,7 @@
         </div>
 
         <div class="formularios">
-            <form action="../View/crearPersonaje.php">
+            <form action="../Controller/c.crearPersonaje.php">
                 <input type="submit" value="Crear personaje" class="btn">
             </form>
 
@@ -63,7 +63,7 @@
             <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['datosUsuario']->getOro() ?></span>
         </div>
     </header>
-    
+
     <h1>Modifica los campos que quieras cambiar.</h1>
     <div class="contenedor-formulario">
         <form action="../Controller/c.modificarUsuario.php" method="post" class="formulario">

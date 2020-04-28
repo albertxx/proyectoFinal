@@ -1,6 +1,6 @@
 <?php
 
-abstract class UsuariosBD{
+abstract class IvaliceBD{
     public static function connectDB()
     {
         try{
