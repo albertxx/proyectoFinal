@@ -39,6 +39,21 @@ class Personaje{
         $conexion->exec($insertarStats);
     }
 
+    // Devuelve un array con todos los personajes creados por el usuario
+    public static function getPersonajes($nick){
+        $conexion = IvaliceBD::connectDB();
+        $registros = "SELECT * FROM personajes WHERE nick_usuario=\"".$nick."\"";
+        $consulta = $conexion->query($registros);
+        $personajes = [];
+
+        while ($personaje = $consulta->fetchObject()) {
+            $personajes[] = new Personaje($personaje->idPersonaje, $personaje->Nombre, $personaje->idClase, $personaje->Nivel, $personaje->foto, $personaje->nick_usuario);
+        }
+
+        return $personajes;
+    }
+
+    // Rescata el último personaje creado por el usuario
     public static function getUltimoPersonajeCreadoById($id){
         $conexion = IvaliceBD::connectDB();
         $seleccion = "SELECT * FROM personajes WHERE nick_usuario=\"".$id."\"";
@@ -51,6 +66,7 @@ class Personaje{
         $personaje = new Personaje($ultimoPersonaje->idPersonaje, $ultimoPersonaje->Nombre, $ultimoPersonaje->idClase, $ultimoPersonaje->Nivel, $ultimoPersonaje->foto, $ultimoPersonaje->nick_usuario);
         return $personaje;
     }
+
     /**
      * Get the value of idPersonaje
      */ 

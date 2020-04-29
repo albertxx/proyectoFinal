@@ -31,7 +31,7 @@
             </form>
 
             <!-- Botón listado de personajes -->
-            <form action="../Controller/c.listarPersonajes">
+            <form action="../Controller/c.listarPersonajes.php">
                 <input type="submit" value="Listado de personajes" class="btn">
             </form>
         </div>
