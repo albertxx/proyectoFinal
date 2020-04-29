@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../Model/IvaliceBD.php";
+require_once "../Model/Estadisticas.php";
 
 class Personaje{
 
@@ -24,14 +25,31 @@ class Personaje{
         $this->nick_usuario = $nick_usuario;
     }
 
-    public function insertarPersonaje(){
-        $conexion = IvaliceBD::connectBD();
-        $insertarPersonaje = "INSERT INTO personajes (idPersonaje, nombre, idClase, nivel, foto, nick_usuario) VALUES (null, '$this->nombre', '$this->idClase', '$this->nivel', '$this->foto', '$this->nick_usuario)";
+    // Esta función inserta el personaje en la bd y tras ello, sus estadísticas iniciales
+    public function insertarPersonaje($vida, $atk, $def, $magia){
+        $conexion = IvaliceBD::connectDB();
+        // Inserción de personaje en la BD
+        $insertarPersonaje = "INSERT INTO personajes (idPersonaje, Nombre, idClase, Nivel, foto, nick_usuario) VALUES ('$this->idPersonaje', '$this->nombre', '$this->idClase', $this->nivel, '$this->foto', '$this->nick_usuario')";
         $conexion->exec($insertarPersonaje);
+
+        // Recupera el personaje creado anteriormente
+        $personaje = Personaje::getUltimoPersonajeCreadoById($this->nick_usuario);
+        // Inserción de estadísticas base
+        $insertarStats = "INSERT INTO estadisticas (idPersonaje, vida, atk, def, magia) values ('$personaje->idPersonaje', '$vida', '$atk', '$def', '$magia')";
+        $conexion->exec($insertarStats);
     }
 
-    public static function getPersonajeById($id){
+    public static function getUltimoPersonajeCreadoById($id){
+        $conexion = IvaliceBD::connectDB();
+        $seleccion = "SELECT * FROM personajes WHERE nick_usuario=\"".$id."\"";
+        $consulta = $conexion->query($seleccion);
+        
+        while($registro = $consulta->fetchObject()){
+            $ultimoPersonaje = $registro;
+        }
 
+        $personaje = new Personaje($ultimoPersonaje->idPersonaje, $ultimoPersonaje->Nombre, $ultimoPersonaje->idClase, $ultimoPersonaje->Nivel, $ultimoPersonaje->foto, $ultimoPersonaje->nick_usuario);
+        return $personaje;
     }
     /**
      * Get the value of idPersonaje

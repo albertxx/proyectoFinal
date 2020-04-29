@@ -12,8 +12,7 @@ $data['clases'] = Clase::getClases();
 
 if(isset($_POST['nombrePersonaje'])){
     // Datos del personaje e inserción del mismo en la BD
-    $carpeta_imagenes = $_SERVER['DOCUMENT_ROOT'] . "Proyectos/proyectoFinal/View/img/fotosPersonaje";
-
+    $carpeta_imagenes = $_SERVER['DOCUMENT_ROOT'] . "/Proyectos/proyectoFinal/View/img/fotosPersonaje/";
     $nombre_imagen = $_FILES['fotoPersonaje']['name'];
     $nombrePersonaje = $_POST['nombrePersonaje'];
     $idClase = $_POST['clases'];
@@ -21,10 +20,11 @@ if(isset($_POST['nombrePersonaje'])){
     move_uploaded_file($_FILES['fotoPersonaje']['tmp_name'],$carpeta_imagenes.$nombre_imagen);
 
     $nuevoPersonaje = new Personaje(null, $nombrePersonaje, $idClase, 1, $nombre_imagen, $nick);
-    $nuevoPersonaje->insertarPersonaje();
-
-    // Estadísticas iniciales e inserción en la bd
-    
+    $vida = $_POST['vida'];
+    $atk = $_POST['atk'];
+    $def = $_POST['def'];
+    $magia = $_POST['magia'];
+    $nuevoPersonaje->insertarPersonaje($vida, $atk, $def, $magia);
 }
 
 

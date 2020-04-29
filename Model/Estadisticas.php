@@ -24,7 +24,7 @@ class Estadisticas{
     
     public function insertarEstadisticasIniciales(){
         $conexion = IvaliceBD::connectBD();
-        $insertarStats = "INSERT INTO estadisticas (idPersonaje, vida, atk, def, magia) VALUES ('$this->idPersonaje', '$this->vida', '$this->atk', '$this->def', '$this->magia')";
+        $insertarStats = "INSERT INTO estadisticas (vida, atk, def, magia) VALUES ('$this->vida', '$this->atk', '$this->def', '$this->magia')";
         $conexion->exec($insertarStats);
     }
 

@@ -70,7 +70,7 @@ require_once "../Model/Usuario.php";
         <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getOro() ?></span>
     </div>
 </header>
-    <form action="../Controller/c.crearPersonaje.php" method="post" class="formulario">
+    <form action="../Controller/c.crearPersonaje.php" method="post" class="formulario" enctype="multipart/form-data">
         <div class="informacionFormulario">
             <!-- Input del nombre del personaje -->
             <div class="inputs">
