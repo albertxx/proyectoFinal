@@ -42,3 +42,19 @@
     position: fixed;
     left: 40%;
 }
+
+.ventanaModal .contenedorStats .stats{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.ventanaModal .contenedorStats .stats img{
+    margin-right: 10px;
+}
+
+.ventanaModal .contenedorStats{
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+}

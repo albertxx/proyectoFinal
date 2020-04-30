@@ -119,6 +119,66 @@ class Estadisticas{
 
         return $this;
     }
+
+    /**
+     * Get the value of idPersonaje
+     */ 
+    public function getIdPersonaje()
+    {
+        return $this->idPersonaje;
+    }
+
+    /**
+     * Set the value of idPersonaje
+     *
+     * @return  self
+     */ 
+    public function setIdPersonaje($idPersonaje)
+    {
+        $this->idPersonaje = $idPersonaje;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pm
+     */ 
+    public function getPm()
+    {
+        return $this->pm;
+    }
+
+    /**
+     * Set the value of pm
+     *
+     * @return  self
+     */ 
+    public function setPm($pm)
+    {
+        $this->pm = $pm;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of ph
+     */ 
+    public function getPh()
+    {
+        return $this->ph;
+    }
+
+    /**
+     * Set the value of ph
+     *
+     * @return  self
+     */ 
+    public function setPh($ph)
+    {
+        $this->ph = $ph;
+
+        return $this;
+    }
 }
 
 ?>

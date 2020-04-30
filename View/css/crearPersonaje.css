@@ -206,8 +206,10 @@ label[for=fotoPersonaje]:before {
 
 .pm{
     color: blue;
+    margin-right: 5px;
 }
 
 .ph{
     color: green;
+    margin-right: 5px;
 }

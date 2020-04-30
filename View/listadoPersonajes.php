@@ -11,33 +11,31 @@
 </head>
 
 <script>
-    
     function abrirVentana(idPersonaje) {
+        jQuery.ajax({
+        url: "../Controller/c.estadisticasPersonaje.php",
+        data:'idPersonaje='+idPersonaje,
+        type: "POST",
+        timeout: 5000,
+        success:function(data){
+            var datosClase = JSON.parse(data);
+            $("#vida").html(datosClase.vida);
+            $("#atk").html(datosClase.atk);
+            $("#def").html(datosClase.def);
+            $("#magia").html(datosClase.magia);
+            $("#pm").html(datosClase.pm);
+            $("#ph").html(datosClase.ph);
+        },
+        error:function(){
+            $(".contenedorStats").html("Lo sentimos, aún no está disponible.");
+        }
+        });
+
         if($(".ventanaModal").css("visibility") == "hidden"){
             $(".ventanaModal").css("visibility", "visible");
         }else{
             $(".ventanaModal").css("visibility", "hidden");
         }
-
-        jQuery.ajax({
-        url: "../Controller/c.comprobarRegistro.php",
-        data:'nick='+$("#registroNick").val(),
-        type: "POST",
-        timeout: 5000,
-        success:function(data){
-            if(data == false){
-                $("#estadoRegistro").html("Usuario no Disponible. Ya está siendo utilizado.").css("color", "red");
-                $("#btnSubmit").attr('disabled', 'disabled');
-            }else{
-                $("#estadoRegistro").html("Usuario Disponible.").css("color", "lightgreen");
-                $("#btnSubmit").removeAttr('disabled');
-            }
-    },
-    error:function(){
-        $("#error").html("Ups, parece que ha habido un error al registrarse. ¡Lo sentimos!");
-    }
-    });
-
     }
 
 </script>
@@ -78,10 +76,37 @@
 <div class="listaPersonajes">
 
 <div class="ventanaModal">
-    <p>Vida: </p>
-    <p>Ataque: </p>
-    <p>Defensa: </p>
-    <p>Magia: </p>
+    <div class="contenedorStats">
+        <div class="stats">
+            <img src='../View/img/stats/vida1.png'>
+            <span id="vida">VIDA</span>
+        </div>
+
+        <div class="stats">
+            <img src='../View/img/stats/atk1.png'>
+            <span id="atk">ATK</span>
+        </div>
+
+        <div class="stats">
+            <img src='../View/img/stats/def1.png'>
+            <span id="def">DEF</span>
+        </div>
+
+        <div class="stats">
+            <img src='../View/img/stats/magia1.png'>
+            <span id="magia">MAGIA</span>
+        </div>
+        
+        <div class="stats">
+            <span class="pm">PM: </span> 
+            <span id="pm"></span>
+        </div>
+
+        <div class="stats">
+            <span class="ph">PH: </span> 
+            <span id="ph"></span>
+        </div>
+    </div>
 </div>
 
 <?php 
@@ -95,6 +120,7 @@
         </div>
 
         <div class="infoPersonaje">
+            <input type="hidden" name="idPersonaje" id="idPersonaje" value="<?= $data['personajes'][$i]->getIdPersonaje() ?>">
             <p><span>Nombre: </span> <?= $data['personajes'][$i]->getNombre() ?></p>
             <p><span>Clase:</span> <?= Clase::getClaseById($data['personajes'][$i]->getIdClase())->getNombre_clase() ?> </p> 
             <p><span>Vida: </span> <?= Estadisticas::getEstadisticasByPersonaje($data['personajes'][$i]->getIdPersonaje())->getVida() ?> </p>
@@ -103,7 +129,7 @@
             <br>
             <br>
             <button onclick="abrirVentana(<?= $data['personajes'][$i]->getIdPersonaje() ?>)">
-                Ver todas las estadísticas
+                Ver todas las estadísticas <?= $data['personajes'][$i]->getIdPersonaje() ?>
             </button>
         </div>
     </div>
