@@ -67,6 +67,15 @@ class Personaje{
         return $personaje;
     }
 
+    function getPersonajeById($idPersonaje){
+        $conexion = IvaliceBD::connectDB();
+        $seleccion = "SELECT * FROM personajes WHERE idPersonaje=\"".$idPersonaje."\"";
+        $consulta = $conexion->query($seleccion);
+        $registro = $consulta->fetchObject();
+        $personaje = new Personaje($registro->idPersonaje, $registro->Nombre, $registro->idClase, $registro->Nivel, $registro->foto, $registro->nick_usuario);
+        
+        return $personaje;
+    }
     /**
      * Get the value of idPersonaje
      */ 

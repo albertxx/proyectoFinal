@@ -205,11 +205,11 @@ label[for=fotoPersonaje]:before {
 }
 
 .pm{
-    color: blue;
+    color: rgb(0, 110, 255);
     margin-right: 5px;
 }
 
 .ph{
-    color: green;
+    color: rgb(17, 212, 17);
     margin-right: 5px;
 }

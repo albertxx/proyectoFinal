@@ -11,20 +11,21 @@
 </head>
 
 <script>
-    function abrirVentana(idPersonaje) {
+    function abrirVentanaEstadísticas(idPersonaje) {
         jQuery.ajax({
         url: "../Controller/c.estadisticasPersonaje.php",
         data:'idPersonaje='+idPersonaje,
         type: "POST",
         timeout: 5000,
         success:function(data){
-            var datosClase = JSON.parse(data);
-            $("#vida").html(datosClase.vida);
-            $("#atk").html(datosClase.atk);
-            $("#def").html(datosClase.def);
-            $("#magia").html(datosClase.magia);
-            $("#pm").html(datosClase.pm);
-            $("#ph").html(datosClase.ph);
+            var datosPersonaje = JSON.parse(data);
+            $("#nombrePersonaje").html(datosPersonaje.nombre_personaje);
+            $("#vida").html(datosPersonaje.vida);
+            $("#atk").html(datosPersonaje.atk);
+            $("#def").html(datosPersonaje.def);
+            $("#magia").html(datosPersonaje.magia);
+            $("#pm").html(datosPersonaje.pm);
+            $("#ph").html(datosPersonaje.ph);
         },
         error:function(){
             $(".contenedorStats").html("Lo sentimos, aún no está disponible.");
@@ -74,39 +75,48 @@
 
 
 <div class="listaPersonajes">
-
+<!-- Inicio ventana modal -->
 <div class="ventanaModal">
+
+    <div class="encabezadoVentana">
+        <h3 id="nombrePersonaje"></h3>
+    </div>
+
+    <!-- Inicio ventana modal de las estadísticas -->
     <div class="contenedorStats">
         <div class="stats">
-            <img src='../View/img/stats/vida1.png'>
-            <span id="vida">VIDA</span>
+            <img src='../View/img/stats/vida1.png'><span class="textoStat">Vida:</span>
+            <span id="vida"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/atk1.png'>
-            <span id="atk">ATK</span>
+            <img src='../View/img/stats/atk1.png'><span class="textoStat">Ataque:</span>
+            <span id="atk"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/def1.png'>
-            <span id="def">DEF</span>
+            <img src='../View/img/stats/def1.png'><span class="textoStat">Defensa:</span>
+            <span id="def"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/magia1.png'>
-            <span id="magia">MAGIA</span>
+            <img src='../View/img/stats/magia1.png'><span class="textoStat">Magia:</span>
+            <span id="magia"></span>
         </div>
         
         <div class="stats">
-            <span class="pm">PM: </span> 
+            <span class="pm textoStat">Puntos de magia (PM): </span> 
             <span id="pm"></span>
         </div>
 
         <div class="stats">
-            <span class="ph">PH: </span> 
+            <span class="ph texto stat">Puntos de habilidad (PH): </span> 
             <span id="ph"></span>
         </div>
     </div>
+    <!-- Fin ventana modal de las estadísticas -->
+
+    <!-- Inicio ventana modal de las habilidades -->
 </div>
 
 <?php 
@@ -125,11 +135,11 @@
             <p><span>Clase:</span> <?= Clase::getClaseById($data['personajes'][$i]->getIdClase())->getNombre_clase() ?> </p> 
             <p><span>Vida: </span> <?= Estadisticas::getEstadisticasByPersonaje($data['personajes'][$i]->getIdPersonaje())->getVida() ?> </p>
             <p><span>Nivel: </span> <?= $data['personajes'][$i]->getNivel() ?> </p>
-            <p><span>Habilidades:</span></p>
-            <br>
-            <br>
-            <button onclick="abrirVentana(<?= $data['personajes'][$i]->getIdPersonaje() ?>)">
-                Ver todas las estadísticas <?= $data['personajes'][$i]->getIdPersonaje() ?>
+            <button class="btn" onclick="abrirVentanaHabilidades()">
+                Habilidades
+            </button>
+            <button onclick="abrirVentanaEstadísticas(<?= $data['personajes'][$i]->getIdPersonaje() ?>)" class="btn">
+                Ver todas las estadísticas
             </button>
         </div>
     </div>
