@@ -8,26 +8,38 @@ class Estadisticas{
     private $atk;
     private $def;
     private $magia;
+    private $pm;
+    private $ph;
 
     /**
      * Class constructor.
      */
-    public function __construct($idPersonaje, $vida, $atk, $def, $magia)
+    public function __construct($idPersonaje, $vida, $atk, $def, $magia, $pm, $ph)
     {   
         $this->idPersonaje = $idPersonaje;
         $this->vida = $vida;
         $this->atk = $atk;
         $this->def = $def;
         $this->magia = $magia;
+        $this->pm = $pm;
+        $this->ph = $ph;
     }
 
     
     public function insertarEstadisticasIniciales(){
         $conexion = IvaliceBD::connectBD();
-        $insertarStats = "INSERT INTO estadisticas (vida, atk, def, magia) VALUES ('$this->vida', '$this->atk', '$this->def', '$this->magia')";
+        $insertarStats = "INSERT INTO estadisticas (vida, atk, def, magia, pm, ph) VALUES ('$this->vida', '$this->atk', '$this->def', '$this->magia', '$this->pm', '$this->ph')";
         $conexion->exec($insertarStats);
     }
 
+    public static function getEstadisticasByPersonaje($idPersonaje){
+        $conexion = IvaliceBD::connectDB();
+        $seleccion = "SELECT * from estadisticas WHERE idPersonaje = '".$idPersonaje."'";
+        $registro = $conexion->query($seleccion);
+        $consulta = $registro->fetchObject();
+        $estadisticasPersonaje = new Estadisticas($consulta->idPersonaje, $consulta->vida, $consulta->atk, $consulta->def, $consulta->magia, $consulta->pm, $consulta->ph);
+        return $estadisticasPersonaje;
+    }
     /**
      * Get the value of vida
      */ 

@@ -33,9 +33,13 @@ require_once "../Model/Usuario.php";
         $("#defInput").val(datosClase.def);
         $("#magia").html(datosClase.magia);
         $("#magiaInput").val(datosClase.magia);
+        $("#pm").html(datosClase.pm);
+        $("#pmInput").val(datosClase.pm);
+        $("#ph").html(datosClase.ph);
+        $("#phInput").val(datosClase.ph);
     },
     error:function(){
-        
+        $(".descripcionClases").html("Lo sentimos, aún no está disponible.");
     }
     });
 }
@@ -55,13 +59,13 @@ require_once "../Model/Usuario.php";
 
         <!-- Botones para navegar por las diferentes páginas de la app -->
     <div class="formularios">
-        <!-- Botón crear personaje -->
+        <!-- Botón para volver a la página principal -->
         <form action="../Controller/c.guardarUsuario.php">
             <input type="submit" value="Volver a la página principal" class="btn">
         </form>
 
         <!-- Botón listado de personajes -->
-        <form action="">
+        <form action="../Controller/c.listarPersonajes.php">
             <input type="submit" value="Listado de personajes" class="btn">
         </form>
     </div>
@@ -113,6 +117,7 @@ require_once "../Model/Usuario.php";
             <br>
 
             <div class="stats">
+                <h4 class="tituloStats">Estadísticas iniciales</h4>
                 <img src='../View/img/stats/vida1.png'> &nbsp; <span id="vida"></span>
                 <input type="hidden" name="vida" id="vidaInput">
                 <br>
@@ -124,6 +129,12 @@ require_once "../Model/Usuario.php";
                 <br>
                 <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
                 <input type="hidden" name="magia" id="magiaInput">
+                <br>
+                <span class="pm">PM: </span> <span id="pm"></span>
+                <input type="hidden" name="pm" id="pmInput">
+                <br>
+                <span class="ph">PH: </span> <span id="ph"></span>
+                <input type="hidden" name="ph" id="phInput">
             </div>
         </div>
     </form>

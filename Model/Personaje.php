@@ -26,7 +26,7 @@ class Personaje{
     }
 
     // Esta función inserta el personaje en la bd y tras ello, sus estadísticas iniciales
-    public function insertarPersonaje($vida, $atk, $def, $magia){
+    public function insertarPersonaje($vida, $atk, $def, $magia, $pm, $ph){
         $conexion = IvaliceBD::connectDB();
         // Inserción de personaje en la BD
         $insertarPersonaje = "INSERT INTO personajes (idPersonaje, Nombre, idClase, Nivel, foto, nick_usuario) VALUES ('$this->idPersonaje', '$this->nombre', '$this->idClase', $this->nivel, '$this->foto', '$this->nick_usuario')";
@@ -35,12 +35,12 @@ class Personaje{
         // Recupera el personaje creado anteriormente
         $personaje = Personaje::getUltimoPersonajeCreadoById($this->nick_usuario);
         // Inserción de estadísticas base
-        $insertarStats = "INSERT INTO estadisticas (idPersonaje, vida, atk, def, magia) values ('$personaje->idPersonaje', '$vida', '$atk', '$def', '$magia')";
+        $insertarStats = "INSERT INTO estadisticas (idPersonaje, vida, atk, def, magia, pm, ph) values ('$personaje->idPersonaje', '$vida', '$atk', '$def', '$magia', '$pm', '$ph')";
         $conexion->exec($insertarStats);
     }
 
     // Devuelve un array con todos los personajes creados por el usuario
-    public static function getPersonajes($nick){
+    public static function getPersonajesByNick($nick){
         $conexion = IvaliceBD::connectDB();
         $registros = "SELECT * FROM personajes WHERE nick_usuario=\"".$nick."\"";
         $consulta = $conexion->query($registros);

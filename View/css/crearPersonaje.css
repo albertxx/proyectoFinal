@@ -198,3 +198,16 @@ label[for=fotoPersonaje]:before {
 .formulario .btnSubmit:hover{
     background-color:rgb(228, 18, 165);
 }
+
+.tituloStats{
+    color:#3499db;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.pm{
+    color: blue;
+}
+
+.ph{
+    color: green;
+}

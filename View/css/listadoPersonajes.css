@@ -1,0 +1,44 @@
+.listaPersonajes{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.personaje{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:40px;
+}
+
+.fotoPersonaje{
+    display: flex;
+    flex-direction: column;
+}
+
+.infoPersonaje{
+    margin-left: 20px;
+    color: white;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.infoPersonaje p span{
+    color: #3498db;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.imagenPersonaje{
+    height: 300px;
+    width: 250px;
+}
+
+.ventanaModal{
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    opacity: 0.7;
+    visibility: hidden;
+    position: fixed;
+    left: 40%;
+}

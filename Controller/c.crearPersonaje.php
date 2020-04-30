@@ -24,7 +24,9 @@ if(isset($_POST['nombrePersonaje'])){
     $atk = $_POST['atk'];
     $def = $_POST['def'];
     $magia = $_POST['magia'];
-    $nuevoPersonaje->insertarPersonaje($vida, $atk, $def, $magia);
+    $pm = $_POST['pm'];
+    $ph = $_POST['ph'];
+    $nuevoPersonaje->insertarPersonaje($vida, $atk, $def, $magia, $pm, $ph);
 }
 
 
