@@ -75,6 +75,20 @@ header .oro{
     margin-right: 13px;
 }
 
+header .cerrarSesion{
+    margin-left: 10px;
+    color: white;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header #cerrarSesion{
+    width: 20px;
+    height: 20px;
+}
+
 .misiones{
     display:flex;
     flex-direction: column;
@@ -112,6 +126,14 @@ header .oro{
     color:rgb(228, 18, 165);
     margin-left: 70px;
 }
+
+.fin{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
 
 @media (max-width: 650px) {
     header{

@@ -1,7 +1,7 @@
 <?php 
 require_once "../Model/Usuario.php";
 
-if(!isset($_COOKIE['usuario'])){
+if(!isset($_COOKIE['usuario']) || $_COOKIE['usuario'] == ""){
     $data['usuario'] = Usuario::getUsuarioById($_REQUEST['nick']);
     setcookie('usuario', serialize($data['usuario']), time()+60*60*24);
 }else{

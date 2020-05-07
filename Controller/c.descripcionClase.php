@@ -14,6 +14,7 @@ if($_POST['idClase'] != ""){
                 "atk" => 3,
                 "def" => 3,
                 "magia" => 1,
+                "velocidad" => 3,
                 "pm" => 100,
                 "ph" => 100
             ];
@@ -25,6 +26,7 @@ if($_POST['idClase'] != ""){
                 "atk" => 2,
                 "def" => 2,
                 "magia" => 5,
+                "velocidad" => 2,
                 "pm" => 200,
                 "ph" => 50
             ];
@@ -37,6 +39,7 @@ if($_POST['idClase'] != ""){
                 "atk" => 2,
                 "def" => 5,
                 "magia" => 3,
+                "velocidad" => 2,
                 "pm" => 150,
                 "ph" => 100
             ];
@@ -48,6 +51,7 @@ if($_POST['idClase'] != ""){
                 "atk" => 4,
                 "def" => 2,
                 "magia" => 2,
+                "velocidad" => 5,
                 "pm" => 80,
                 "ph" => 150
             ];
@@ -60,6 +64,7 @@ if($_POST['idClase'] != ""){
                 "atk" => 5,
                 "def" => 1,
                 "magia" => 1,
+                "velocidad" => 3,
                 "pm" => 50,
                 "ph" => 200
             ];

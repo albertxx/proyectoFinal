@@ -1,6 +1,6 @@
 <?php 
 
-require_once "../Model/Estadisticas.php";
+require_once "../Model/Habilidades.php";
 require_once "../Model/Personaje.php";
 
 $estadisticas = Estadisticas::getEstadisticasByPersonaje($_REQUEST['idPersonaje']);
@@ -11,6 +11,7 @@ $estadisticasPersonaje = [
     "atk" => $estadisticas->getAtk(),
     "def" => $estadisticas->getDef(),
     "magia" => $estadisticas->getMagia(),
+    "velocidad" => $estadisticas->getVelocidad(),
     "pm" => $estadisticas->getPm(),
     "ph" => $estadisticas->getPh()
 ];

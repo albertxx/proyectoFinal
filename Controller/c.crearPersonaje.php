@@ -19,14 +19,15 @@ if(isset($_POST['nombrePersonaje'])){
 
     move_uploaded_file($_FILES['fotoPersonaje']['tmp_name'],$carpeta_imagenes.$nombre_imagen);
 
-    $nuevoPersonaje = new Personaje(null, $nombrePersonaje, $idClase, 1, $nombre_imagen, $nick);
+    $nuevoPersonaje = new Personaje(null, $nombrePersonaje, $idClase, 1, $nombre_imagen, 0, $nick);
     $vida = $_POST['vida'];
     $atk = $_POST['atk'];
     $def = $_POST['def'];
     $magia = $_POST['magia'];
+    $velocidad = $_POST['velocidad'];
     $pm = $_POST['pm'];
     $ph = $_POST['ph'];
-    $nuevoPersonaje->insertarPersonaje($vida, $atk, $def, $magia, $pm, $ph);
+    $nuevoPersonaje->insertarPersonaje($vida, $atk, $def, $magia, $velocidad, $pm, $ph);
 }
 
 

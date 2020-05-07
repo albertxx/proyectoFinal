@@ -11,7 +11,8 @@
 </head>
 
 <script>
-    function abrirVentanaEstadísticas(idPersonaje) {
+    // Función para abrir la ventana modal de las estadísticas
+    function abrirVentanaEstadisticas(idPersonaje) {
         jQuery.ajax({
         url: "../Controller/c.estadisticasPersonaje.php",
         data:'idPersonaje='+idPersonaje,
@@ -24,6 +25,7 @@
             $("#atk").html(datosPersonaje.atk);
             $("#def").html(datosPersonaje.def);
             $("#magia").html(datosPersonaje.magia);
+            $("#velocidad").html(datosPersonaje.velocidad);
             $("#pm").html(datosPersonaje.pm);
             $("#ph").html(datosPersonaje.ph);
         },
@@ -34,11 +36,47 @@
 
         if($(".ventanaModal").css("visibility") == "hidden"){
             $(".ventanaModal").css("visibility", "visible");
+            $(".ventanaModalHabilidades").css("visibility", "hidden");
         }else{
             $(".ventanaModal").css("visibility", "hidden");
         }
     }
 
+    // Función para abrir la ventana modal de las habilidades
+    function abrirVentanaHabilidades(idPersonaje, idClase) {
+        var params = {
+                idPersonaje: idPersonaje,
+                idClase: idClase
+            };
+
+        jQuery.ajax({
+        url: "../Controller/c.habilidadesPersonaje.php",
+        data:params,
+        type: "POST",
+        timeout: 5000,
+        success:function(data){
+            var datosHabilidades = JSON.parse(data)
+            $("#nombrePersonajeHabilidades").html(datosHabilidades[datosHabilidades.length-1].nombre_personaje);
+
+            $("#tabla").html("");
+            for (let i = 0; i < datosHabilidades.length-1; i++) {
+                $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+            }
+
+            
+        },
+        error:function(){
+            $(".contenedorHabilidades").html("Lo sentimos, aún no está disponible.");
+        }
+        });
+
+        if($(".ventanaModalHabilidades").css("visibility") == "hidden"){
+            $(".ventanaModalHabilidades").css("visibility", "visible");
+            $(".ventanaModal").css("visibility", "hidden");
+        }else{
+            $(".ventanaModalHabilidades").css("visibility", "hidden");
+        }
+    }
 </script>
 
 <body>
@@ -105,20 +143,37 @@
         </div>
         
         <div class="stats">
+            <img src='../View/img/stats/velocidad.png'><span class="textoStat">Velocidad:</span>
+            <span id="velocidad"></span>
+        </div>
+
+        <div class="stats">
             <span class="pm textoStat">Puntos de magia (PM): </span> 
             <span id="pm"></span>
         </div>
-
         <div class="stats">
             <span class="ph texto stat">Puntos de habilidad (PH): </span> 
             <span id="ph"></span>
         </div>
     </div>
     <!-- Fin ventana modal de las estadísticas -->
-
-    <!-- Inicio ventana modal de las habilidades -->
 </div>
 
+<!-- Inicio ventana modal de las habilidades -->
+<div class="ventanaModalHabilidades">
+    
+    <div class="encabezadoVentana">
+        <h3 id="nombrePersonajeHabilidades"></h3>
+    </div>
+    
+    <div class="contenedorHabilidades">
+        <table border="2" id="tabla">
+
+        </table>
+    </div>
+
+</div>
+<!-- Fin ventana modal de las habilidades -->
 <?php 
 
     for ($i=0; $i < count($data['personajes']); $i++) { 
@@ -133,12 +188,12 @@
             <input type="hidden" name="idPersonaje" id="idPersonaje" value="<?= $data['personajes'][$i]->getIdPersonaje() ?>">
             <p><span>Nombre: </span> <?= $data['personajes'][$i]->getNombre() ?></p>
             <p><span>Clase:</span> <?= Clase::getClaseById($data['personajes'][$i]->getIdClase())->getNombre_clase() ?> </p> 
-            <p><span>Vida: </span> <?= Estadisticas::getEstadisticasByPersonaje($data['personajes'][$i]->getIdPersonaje())->getVida() ?> </p>
+            <p><span>Experiencia: </span> <?= $data['personajes'][$i]->getXp() ?> </p>
             <p><span>Nivel: </span> <?= $data['personajes'][$i]->getNivel() ?> </p>
-            <button class="btn" onclick="abrirVentanaHabilidades()">
+            <button class="btn" onclick="abrirVentanaHabilidades(<?= $data['personajes'][$i]->getIdPersonaje() ?>, <?= $data['personajes'][$i]->getIdClase() ?>)">
                 Habilidades
             </button>
-            <button onclick="abrirVentanaEstadísticas(<?= $data['personajes'][$i]->getIdPersonaje() ?>)" class="btn">
+            <button class="btn" onclick="abrirVentanaEstadisticas(<?= $data['personajes'][$i]->getIdPersonaje() ?>)">
                 Ver todas las estadísticas
             </button>
         </div>

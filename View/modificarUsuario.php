@@ -54,7 +54,7 @@
                 <input type="submit" value="Volver a la página principal" class="btn">
             </form>
 
-            <form action="../View/p.html">
+            <form action="../Controller/c.listarPersonajes.php">
                 <input type="submit" value="Listado de personajes" class="btn">
             </form>
         </div>

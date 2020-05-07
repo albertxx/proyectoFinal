@@ -25,16 +25,25 @@ require_once "../Model/Usuario.php";
     success:function(data){
         var datosClase = JSON.parse(data);
         $(".descripcionClases").html(datosClase.descripcion);
+
         $("#vida").html(datosClase.vida);
         $("#vidaInput").val(datosClase.vida);
+
         $("#atk").html(datosClase.atk);
         $("#atkInput").val(datosClase.atk);
+
         $("#def").html(datosClase.def);
         $("#defInput").val(datosClase.def);
+
         $("#magia").html(datosClase.magia);
         $("#magiaInput").val(datosClase.magia);
+
+        $("#velocidad").html(datosClase.velocidad);
+        $("#velocidadInput").val(datosClase.velocidad);
+
         $("#pm").html(datosClase.pm);
         $("#pmInput").val(datosClase.pm);
+
         $("#ph").html(datosClase.ph);
         $("#phInput").val(datosClase.ph);
     },
@@ -129,6 +138,10 @@ require_once "../Model/Usuario.php";
                 <br>
                 <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
                 <input type="hidden" name="magia" id="magiaInput">
+                <br>
+                <img src="../View/img/stats/velocidad.png" alt=""> &nbsp; <span id="velocidad"></span>
+                <input type="hidden" name="velocidad" id="velocidadInput">
+                <br>
                 <br>
                 <span class="pm">PM: </span> <span id="pm"></span>
                 <input type="hidden" name="pm" id="pmInput">

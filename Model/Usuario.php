@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../Model/IvaliceBD.php";
+require_once "../Model/Personaje.php";
 
 class Usuario{
     private $nick;
@@ -35,8 +36,13 @@ class Usuario{
     // Recibe el antiguo nick en caso de ser modificado
     function modificarUsuario($nickAntiguo){
         $conexion = IvaliceBD::connectDB();
+
+        Personaje::modificarNick_usuario($nickAntiguo, $this->nick);
+
         $modificarUsuario = "UPDATE usuarios SET nick='".$this->nick."', pwd='".$this->pwd."', nombre='".$this->nombre."', apellidos='".$this->apellidos."', email='".$this->correo."', oro='".$this->oro."' WHERE nick='".$nickAntiguo."';";
         $conexion->exec($modificarUsuario);
+
+
     }
     
     // Recoger todos los usuarios de la base de datos

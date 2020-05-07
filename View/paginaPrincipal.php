@@ -18,6 +18,9 @@
                     <form action="../Controller/c.modificarUsuario.php" method="post">
                         <input type="submit" class="btnUsuario" value="<?= $data['usuario']->getNick() ?>">
                     </form>
+                    <form class="cerrarSesion" action="../Controller/c.cerrarSesion.php" method="post">
+                        <input type="submit" value="Cerrar sesión" class="btnUsuario">
+                    </form>
                 </span> 
             </p>
         </div>
