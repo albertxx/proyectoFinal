@@ -97,6 +97,14 @@ class Personaje{
         }
     }
 
+    public function borrarPersonaje(){
+        $conexion = IvaliceBD::connectDB();
+        $borradoPersonaje = "DELETE FROM personajes WHERE idPersonaje=\"".$this->idPersonaje."\"";
+        $borradoEstadisticas = "DELETE FROM estadisticas WHERE idPersonaje=\"".$this->idPersonaje."\"";
+        $conexion->exec($borradoPersonaje);
+        $conexion->exec($borradoEstadisticas);
+    }
+
     /**
      * Get the value of idPersonaje
      */ 

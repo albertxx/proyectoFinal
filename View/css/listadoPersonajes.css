@@ -10,6 +10,7 @@
     margin-bottom:40px;
 }
 
+
 .fotoPersonaje{
     display: flex;
     flex-direction: column;
@@ -86,6 +87,24 @@
     background-color:rgb(228, 18, 165);
 }
 
+.btnBorrar{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3499db;
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+}
+
+/* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
+.btnBorrar:hover{
+    background-color:#3499db;
+}
 /* Estilo de la ventana modal de las habilidades */
 .ventanaModalHabilidades{
     width: 700px;

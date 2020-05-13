@@ -167,9 +167,7 @@
     </div>
     
     <div class="contenedorHabilidades">
-        <table border="2" id="tabla">
-
-        </table>
+        <table border="2" id="tabla"></table>
     </div>
 
 </div>
@@ -180,8 +178,16 @@
 ?>
     <div class="personaje">
         
-        <div class="fotoPersonaje">
-            <img src="<?= $carpetaFotosPersonaje.$data['personajes'][$i]->getFoto() ?>" alt="" class="imagenPersonaje">
+        <div class="container">
+            <div class="fotoPersonaje">
+                <img src="<?= $carpetaFotosPersonaje.$data['personajes'][$i]->getFoto() ?>" alt="" class="imagenPersonaje">
+            </div>
+            
+            <form action="../Controller/c.borrarPersonaje.php" method="post">
+                <input type="submit" value="Borrar personaje" class="btnBorrar">
+                <input type="hidden" name="idPersonaje" value=<?=  $data['personajes'][$i]->getIdPersonaje() ?>>
+            </form>
+
         </div>
 
         <div class="infoPersonaje">
