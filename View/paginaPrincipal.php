@@ -6,8 +6,42 @@
     <script src="https://kit.fontawesome.com/20bcd05352.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../View/css/paginaPrincipal.css">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <script src="../jquery-3.4.1.js"></script>
     <title>Ivalice</title>
 </head>
+
+<script>
+    function seleccionarPersonaje(nick){
+        jQuery.ajax({
+        url: "../Controller/c.listarPersonajes.php",
+        data:'nick='+nick,
+        type: "POST",
+        timeout: 5000,
+        success:function(data){
+            var datosPersonaje = JSON.parse(data);
+            $("#menuPersonajes").html("");
+            
+            for (let i = 0; i < datosPersonaje.length; i++) {
+                $("#menuPersonajes").append("<option value='" + datosPersonaje[i].idPersonaje + "'>" + datosPersonaje[i].nombre +"</option>");
+                
+            }
+        },
+        error:function(){
+            $(".ventanaModal").html("Lo sentimos, aún no está disponible.");
+        }
+        });
+
+        if($(".ventanaModal").css("visibility") == "hidden"){
+            $(".ventanaModal").css("visibility", "visible");
+        }else{
+            $(".ventanaModal").css("visibility", "hidden");
+        }
+    }
+</script>
 <body>
     <!-- Header de la página -->
     <header>
@@ -45,59 +79,57 @@
         </div>
     </header>
 
+
+    <!-- Inicio ventana modal de selección de personaje para la misión -->
+    <div class="ventanaModal">
+        <div class="encabezadoVentanaModal">
+            <span>¿Con qué personaje irás a la misión?</span>
+            <img src="../View/img/cancelar.png" alt="" onclick="seleccionarPersonaje()" class="cancelar">
+        </div>
+        <form action="" method="post">
+            <select name="menuPersonajes" id="menuPersonajes" class="menuPersonajes"></select>
+            <button type="submit" name="confirmar" class="btnAzul">Confirmar</button>
+        </form>
+    </div>
+    <!-- Fin de la ventana modal de selección de personaje para la misión -->
+
+
     <!-- Misiones a realizar -->
     <div class="misiones">
     <h1 class="tituloMision">TUTORIAL</h1>
     <h1 class="tituloMision">HISTORIA</h1>
-    <!-- PRIMERA MISION -->
+
+    <?php 
+    
+    for ($i=0; $i < count($data['misiones']); $i++) { 
+    
+    ?>
+
         <div class="mision">
-            <img src="../View/img/misiones/mision 1.png" alt="" class="imagenesMisiones">
+            <div class="containerMision">
+                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto() ?>" alt="" class="imagenesMisiones">
+                <button class="btn" onclick="seleccionarPersonaje('<?= $data['usuario']->getNick() ?>')">
+                    Realizar misión
+                </button>
+            </div>
+
             <div class="info">
-                <p>NOMBRE AVENTURA</p>
+                <p>NOMBRE AVENTURA:</p>
                 <p>Coste:</p>
-                <p>Dificultad: </p>
+                <p class="dificultad">Dificultad:
+            <?php
+                for ($j=1; $j <= $data['misiones'][$i]->getDificultad(); $j++) { 
+                
+            ?>
+                <img src="../View/img/estrella.png" alt="">
+            <?php
+                }   
+            ?>
+                </p>
             </div>
         </div>
-
-    <!-- SEGUNDA MISION -->
-        <div class="mision">
-            <img src="../View/img/misiones/mision 2.png" alt="" class="imagenesMisiones">
-            <div class="info">
-                <p>NOMBRE AVENTURA</p>
-                <p>Coste</p>
-                <p>Dificultad: </p>
-            </div>
-        </div>
-
-    <!-- TERCERA MISION -->
-        <div class="mision">
-            <img src="../View/img/misiones/mision 3.png" alt="" class="imagenesMisiones">
-            <div class="info">
-                <p>NOMBRE AVENTURA</p>
-                <p>Coste</p>
-                <p>Dificultad: </p>
-            </div>
-        </div>
-
-    <!-- CUARTA MISION -->
-        <div class="mision">
-            <img src="../View/img/misiones/mision 4.png" alt="" class="imagenesMisiones">
-            <div class="info">
-                <p>NOMBRE AVENTURA</p>
-                <p>Coste</p>
-                <p>Dificultad: </p>
-            </div>
-        </div>
-
-    <!-- QUINTA MISION -->
-        <div class="mision">
-            <img src="../View/img/misiones/mision 5.png" alt="" class="imagenesMisiones">
-            <div class="info">
-                <p>NOMBRE AVENTURA</p>
-                <p>Coste</p>
-                <p>Dificultad: </p>
-            </div>
-        </div>
-    </div>
+    <?php
+    }
+    ?>
 </body>
 </html>

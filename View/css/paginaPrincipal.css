@@ -110,6 +110,7 @@ header #cerrarSesion{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     justify-content: center;
+    height: 200px;
 }
 
 .mision{
@@ -132,6 +133,94 @@ header #cerrarSesion{
     flex-direction: row;
 }
 
+.btn{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(228, 18, 165);
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+}
+
+/* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
+.btn:hover{
+    background-color:rgb(228, 18, 165);
+}
+
+.ventanaModal{
+    width: 300px;
+    background-color: #494747fb;
+    opacity: 0.7;
+    visibility: hidden;
+    position: fixed;
+    left: 40%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ventanaModal .encabezadoVentanaModal{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items:center;
+    border-bottom: 2px solid #ffffff;
+    background-color: #000000;
+    height:37px;
+    width: 100%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.containerMision{
+    display: flex;
+    flex-direction: column;
+}
+
+select{
+    text-align: center;
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3499db;
+    padding: 14px 10px;
+    width: 100%;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+}
+
+select option{
+    background-color: #191919;
+}
+
+.btnAzul{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3499db;
+    padding: 14px 40px;
+    width: 200px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
+}
+
+/* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
+.btnAzul:hover{
+    background-color:#3499db;
+}
 
 
 

@@ -143,7 +143,7 @@
         </div>
         
         <div class="stats">
-            <img src='../View/img/stats/velocidad.png'><span class="textoStat">Velocidad:</span>
+            <img src='../View/img/stats/vel.png'><span class="textoStat">Velocidad:</span>
             <span id="velocidad"></span>
         </div>
 
