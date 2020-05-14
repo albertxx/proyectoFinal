@@ -15,7 +15,7 @@
 </head>
 
 <script>
-    function seleccionarPersonaje(nick){
+    function seleccionarPersonaje(nick, idMision){
         jQuery.ajax({
         url: "../Controller/c.listarPersonajes.php",
         data:'nick='+nick,
@@ -24,7 +24,7 @@
         success:function(data){
             var datosPersonaje = JSON.parse(data);
             $("#menuPersonajes").html("");
-            
+            $("#idMision").val(idMision);
             for (let i = 0; i < datosPersonaje.length; i++) {
                 $("#menuPersonajes").append("<option value='" + datosPersonaje[i].idPersonaje + "'>" + datosPersonaje[i].nombre +"</option>");
                 
@@ -86,8 +86,9 @@
             <span>¿Con qué personaje irás a la misión?</span>
             <img src="../View/img/cancelar.png" alt="" onclick="seleccionarPersonaje()" class="cancelar">
         </div>
-        <form action="" method="post">
+        <form action="../Controller/c.paginaHistoria.php" method="post">
             <select name="menuPersonajes" id="menuPersonajes" class="menuPersonajes"></select>
+            <input type="hidden" name="idMision" id="idMision">
             <button type="submit" name="confirmar" class="btnAzul">Confirmar</button>
         </form>
     </div>
@@ -107,8 +108,8 @@
 
         <div class="mision">
             <div class="containerMision">
-                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto() ?>" alt="" class="imagenesMisiones">
-                <button class="btn" onclick="seleccionarPersonaje('<?= $data['usuario']->getNick() ?>')">
+                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="" class="imagenesMisiones">
+                <button class="btn" onclick="seleccionarPersonaje('<?= $data['usuario']->getNick() ?>', <?= $data['misiones'][$i]->getIdMision() ?>)">
                     Realizar misión
                 </button>
             </div>

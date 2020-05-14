@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marcoHistoria{
+    width: 600px;
+    height: 360px;
+    background: #000;
+    opacity: 0.6;
+    margin-top: 10%;
+    border: 2px solid white;
+}
+
+.contenedorPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+}

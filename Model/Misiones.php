@@ -37,6 +37,15 @@ class Misiones{
         return $misiones;
     }
 
+    public static function getMisionById($idMision){
+        $conexion = IvaliceBD::connectDB();
+        $seleccion = "SELECT * FROM misiones WHERE idMision=\"".$idMision."\"";
+        $consulta = $conexion->query($seleccion);
+        $registro = $consulta->fetchObject();
+        $mision = new Misiones($registro->idMision, $registro->nombreMision, $registro->foto, $registro->preHistoria, $registro->postHistoria, $registro->dificultad);
+        
+        return $mision;
+    }
 
     public function getIdMision()
     {
