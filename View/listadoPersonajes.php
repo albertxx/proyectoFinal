@@ -57,10 +57,13 @@
         success:function(data){
             var datosHabilidades = JSON.parse(data)
             $("#nombrePersonajeHabilidades").html(datosHabilidades[datosHabilidades.length-1].nombre_personaje);
-
             $("#tabla").html("");
             for (let i = 0; i < datosHabilidades.length-1; i++) {
-                $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+                if(datosHabilidades[datosHabilidades.length-1].nivelPersonaje < datosHabilidades[i].nivel_requerido){
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+                }else{
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+                }
             }
 
             

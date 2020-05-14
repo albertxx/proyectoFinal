@@ -4,7 +4,7 @@ require_once "../Model/Personaje.php";
 
 
 $habilidades = Habilidades::getHabilidadesByClase($_POST['idClase']);
-$nombrePersonaje = Personaje::getPersonajeById($_POST['idPersonaje']);
+$personaje = Personaje::getPersonajeById($_POST['idPersonaje']);
 
 $arrayHabilidades = [];
     for ($i=0; $i < count($habilidades); $i++) { 
@@ -18,7 +18,8 @@ $arrayHabilidades = [];
     }
 
     $arrayHabilidades[] = [
-        "nombre_personaje" => $nombrePersonaje->getNombre()
+        "nivelPersonaje" => $personaje->getNivel(),
+        "nombre_personaje" => $personaje->getNombre()
     ];
 
 echo json_encode($arrayHabilidades);
