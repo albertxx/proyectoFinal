@@ -18,10 +18,11 @@ body{
 </head>
 <body>
     <div class="contenedorPrincipal">
-        <div class="marcoHistoria"></div>
-        <form action="" method="post">
+        <div class="marcoHistoria"></div><!-- Insertar aquí la historia  -->
+        <form action="../Controller/c.combate.php" method="post">
             <input type="submit" value="Continuar" class="btnAzul">
             <input type="hidden" name="idPersonaje" value="<?= $idPersonaje ?>">
+            <input type="hidden" name="idMision" value="<?= $idMision ?>">
         </form>
     </div>
 </body>

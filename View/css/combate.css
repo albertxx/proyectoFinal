@@ -1,0 +1,99 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo de la parte del enemigo */
+.containerEnemigo{
+    height: 48vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.enemigo{
+    height: 30vh;
+    width: 20vw;
+    background-color: blue;
+    margin-right: 28px;
+}
+
+/* Estilo de la parte del jugador y su personaje */
+.menuJugador{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+.menuJugador .personaje{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuJugador .personaje p{
+    color: white;
+}
+
+.menuJugador .personaje img{
+    width: 15vw;
+    height: 30vh;
+    margin-left: 15px;
+}
+
+.datosPersonaje{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.datosPersonaje .stats{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 70%;
+}
+
+.datosPersonaje .textoCombate{
+    border: 2px solid black;
+    background-color: white;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.datosPersonaje .textoCombate span{
+    margin: 10px;
+}
+
+.menuCombate{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.menuCombate .habilidades, .menuCombate .ataqueNormal, .menuCombate .defender{
+    border: 1px solid black;
+}
+
+.botones{
+    border: transparent;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+
+}

@@ -7,8 +7,10 @@ $carpetaMisiones = "../View/img/misiones/";
 if(!isset($_POST['idMision'])){
     require_once "../Controller/c.guardarUsuario.php";
 }else{
-    $data['mision'] = Misiones::getMisionById($_POST['idMision']);
+    $idMision = $_POST['idMision'];
     $idPersonaje = $_POST['menuPersonajes'];
+    $data['mision'] = Misiones::getMisionById($idMision);
+    
     require_once "../View/paginaHistoria.php";
 }
 ?>

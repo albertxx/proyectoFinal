@@ -217,7 +217,6 @@ select option{
     transition: 0.25s;
 }
 
-/* Cuando pasas el botón por encima del botón submit del formulario de.formulario */
 .btnAzul:hover{
     background-color:#3499db;
 }

@@ -29,7 +29,6 @@ if(!isset($_REQUEST['nick'])){
         ];
     }
 
-    // var_export($arrayPersonajes);
     echo json_encode($arrayPersonajes);
 }
 ?>
