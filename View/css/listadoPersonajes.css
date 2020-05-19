@@ -141,7 +141,7 @@
 }
 
 .ventanaModalHabilidades .contenedorHabilidades .nombreHabilidad{
-    color: rgb(228, 18, 165);
+    color: rgb(0, 255, 255);
     margin-right: 10px;
     font-weight: bold;
     width: 90px;
@@ -154,4 +154,19 @@
 .ventanaModalHabilidades .contenedorHabilidades #tabla{
     border-color: white;
     text-align: center;
+}
+
+.pm{
+    color: rgb(0, 110, 255);
+    margin-right: 5px;
+}
+
+.ph{
+    color: rgb(17, 212, 17);
+    margin-right: 5px;
+}
+
+.tituloStats{
+    color:#3499db;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

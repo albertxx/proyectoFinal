@@ -199,17 +199,3 @@ label[for=fotoPersonaje]:before {
     background-color:rgb(228, 18, 165);
 }
 
-.tituloStats{
-    color:#3499db;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.pm{
-    color: rgb(0, 110, 255);
-    margin-right: 5px;
-}
-
-.ph{
-    color: rgb(17, 212, 17);
-    margin-right: 5px;
-}
