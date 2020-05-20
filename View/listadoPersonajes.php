@@ -110,7 +110,7 @@
 
     <!-- Oro que actualmente tiene al jugador -->
     <div class="oro">
-        <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getOro() ?></span>
+        <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getPts() ?></span>
     </div>
 </header>
 

@@ -10,11 +10,12 @@ class Misiones{
     private $preHistoria;
     private $postHistoria;
     private $dificultad;
+    private $pts_requeridos;
 
     /**
      * Class constructor.
      */
-    public function __construct($idMision, $nombreMision, $foto, $preHistoria, $postHistoria, $dificultad)
+    public function __construct($idMision, $nombreMision, $foto, $preHistoria, $postHistoria, $dificultad, $pts_requeridos)
     {
         $this->idMision = $idMision;
         $this->nombreMision = $nombreMision;
@@ -22,6 +23,7 @@ class Misiones{
         $this->preHistoria = $preHistoria;
         $this->postHistoria = $postHistoria;
         $this->dificultad = $dificultad;
+        $this->pts_requeridos = $pts_requeridos;
     }
 
     public static function getMisiones(){
@@ -31,7 +33,7 @@ class Misiones{
         $misiones = [];
 
         while ($mision = $consulta->fetchObject()) {
-            $misiones[] = new Misiones($mision->idMision, $mision->nombreMision, $mision->foto, $mision->preHistoria, $mision->postHistoria, $mision->dificultad);
+            $misiones[] = new Misiones($mision->idMision, $mision->nombreMision, $mision->foto, $mision->preHistoria, $mision->postHistoria, $mision->dificultad, $mision->pts_requeridos);
         }
 
         return $misiones;
@@ -42,7 +44,7 @@ class Misiones{
         $seleccion = "SELECT * FROM misiones WHERE idMision=\"".$idMision."\"";
         $consulta = $conexion->query($seleccion);
         $registro = $consulta->fetchObject();
-        $mision = new Misiones($registro->idMision, $registro->nombreMision, $registro->foto, $registro->preHistoria, $registro->postHistoria, $registro->dificultad);
+        $mision = new Misiones($registro->idMision, $registro->nombreMision, $registro->foto, $registro->preHistoria, $registro->postHistoria, $registro->dificultad, $registro->pts_requeridos);
         
         return $mision;
     }
@@ -92,6 +94,26 @@ class Misiones{
     public function setDificultad($dificultad)
     {
         $this->dificultad = $dificultad;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pts_requeridos
+     */ 
+    public function getPts_requeridos()
+    {
+        return $this->pts_requeridos;
+    }
+
+    /**
+     * Set the value of pts_requeridos
+     *
+     * @return  self
+     */ 
+    public function setPts_requeridos($pts_requeridos)
+    {
+        $this->pts_requeridos = $pts_requeridos;
 
         return $this;
     }

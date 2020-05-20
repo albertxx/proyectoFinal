@@ -60,7 +60,7 @@
         </div>
 
         <div class="oro">
-            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['datosUsuario']->getOro() ?></span>
+            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['datosUsuario']->getPts() ?></span>
         </div>
     </header>
 

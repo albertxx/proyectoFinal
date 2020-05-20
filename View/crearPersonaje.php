@@ -81,7 +81,7 @@ require_once "../Model/Usuario.php";
 
     <!-- Oro que actualmente tiene al jugador -->
     <div class="oro">
-        <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getOro() ?></span>
+        <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getPts() ?></span>
     </div>
 </header>
     <form action="../Controller/c.crearPersonaje.php" method="post" class="formulario" enctype="multipart/form-data">

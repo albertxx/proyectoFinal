@@ -75,7 +75,7 @@
 
         <!-- Oro que actualmente tiene al jugador -->
         <div class="oro">
-            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuario']->getOro() ?></span>
+            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuario']->getPts() ?></span>
         </div>
     </header>
 
@@ -109,9 +109,26 @@
         <div class="mision">
             <div class="containerMision">
                 <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="" class="imagenesMisiones">
+                
+                <?php 
+
+                    if($data['usuario']->getPts() >= $data['misiones'][$i]->getPts_requeridos()){
+                ?>
+
                 <button class="btn" onclick="seleccionarPersonaje('<?= $data['usuario']->getNick() ?>', <?= $data['misiones'][$i]->getIdMision() ?>)">
                     Realizar misión
                 </button>
+
+                <?php
+                    }else{
+                ?>
+                        <button class="btn" disabled>
+                            BLOQUEADO
+                        </button>
+                <?php
+                    }
+
+                ?>
             </div>
 
             <div class="info">
