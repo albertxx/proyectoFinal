@@ -117,6 +117,11 @@ class Misiones{
 
         return $this;
     }
+
+    public function getPreHistoria()
+    {
+        return $this->preHistoria;
+    }
 }
 
 ?>

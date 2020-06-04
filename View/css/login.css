@@ -54,6 +54,7 @@ header{
     text-transform: uppercase;
     font-weight: 500;
     margin: 0;
+    color:#3498db;
 }
 
 /* Cuando se comienza a introducir datos en uno de los inputs del formulario de registro */

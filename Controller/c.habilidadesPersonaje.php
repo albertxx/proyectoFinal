@@ -3,8 +3,8 @@ require_once "../Model/Habilidades.php";
 require_once "../Model/Personaje.php";
 
 
-$habilidades = Habilidades::getHabilidadesByClase($_POST['idClase']);
-$personaje = Personaje::getPersonajeById($_POST['idPersonaje']);
+$habilidades = Habilidades::getHabilidadesByClase($_REQUEST['idClase']);
+$personaje = Personaje::getPersonajeById($_REQUEST['idPersonaje']);
 
 $arrayHabilidades = [];
     for ($i=0; $i < count($habilidades); $i++) { 

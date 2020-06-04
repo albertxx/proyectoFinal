@@ -139,7 +139,7 @@ require_once "../Model/Usuario.php";
                 <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
                 <input type="hidden" name="magia" id="magiaInput">
                 <br>
-                <img src="../View/img/stats/velocidad.png" alt=""> &nbsp; <span id="velocidad"></span>
+                <img src="../View/img/stats/vel.png" alt=""> &nbsp; <span id="velocidad"></span>
                 <input type="hidden" name="velocidad" id="velocidadInput">
                 <br>
                 <br>

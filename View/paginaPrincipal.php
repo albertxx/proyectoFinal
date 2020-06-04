@@ -132,8 +132,8 @@
             </div>
 
             <div class="info">
-                <p>NOMBRE AVENTURA:</p>
-                <p>Coste:</p>
+                <p>NOMBRE AVENTURA: <span class="nombreMision"><?= $data['misiones'][$i]->getNombreMision() ?></span></p>
+                <p>Puntos necesarios para desbloquear la misión: <span class="nombreMision"><?= $data['misiones'][$i]->getPts_requeridos() ?></span></p>
                 <p class="dificultad">Dificultad:
             <?php
                 for ($j=1; $j <= $data['misiones'][$i]->getDificultad(); $j++) { 

@@ -7,6 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
     <meta http-equiv="Pragma" content="no-cache">
     <script src="../jquery-3.4.1.js"></script>
     <style>
@@ -69,9 +70,7 @@
             $("#tabla").html("");
             for (let i = 0; i < datosHabilidades.length-1; i++) {
                 if(datosHabilidades[datosHabilidades.length-1].nivelPersonaje >= datosHabilidades[i].nivel_requerido){
-                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
-                    console.log(datosHabilidades[datosHabilidades.length-1].nivelPersonaje);
-                    console.log(datosHabilidades[i].nivel_requerido);
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><button class='btnHabilidad'>" + datosHabilidades[i].nombre + ":</button></td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
                 }
             }
 
@@ -116,8 +115,8 @@
         <div class="datosPersonaje">
             <div class="stats">
                 <button class="btnStats" onclick="abrirVentanaEstadisticas(<?= $data['personajeSeleccionado']->getIdPersonaje() ?>)">Ver estadísticas</button>
-                <p class="pm">100 / <?= $data['estadisticas']->getPm() ?></p>
-                <p class="ph">100 / <?= $data['estadisticas']->getPh() ?></p>
+                <p class="pm">100 <span> /<?= $data['estadisticas']->getPm() ?></span></p>
+                <p class="ph">100 <span>/ <?= $data['estadisticas']->getPh() ?></span></p>
             </div>
 
             <div class="textoCombate">

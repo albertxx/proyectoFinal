@@ -199,3 +199,37 @@ label[for=fotoPersonaje]:before {
     background-color:rgb(228, 18, 165);
 }
 
+@media (max-width: 768px) {
+    header{
+        height: 315px;
+    }
+
+    header{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header .container img{
+        height: 160px;
+        width: 190px;
+    }
+
+    header .formularios{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .formulario .informacionFormulario{
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px){
+    header .formularios .btn{
+        width: 150px;
+    }
+}

@@ -55,6 +55,7 @@
         type: "POST",
         timeout: 5000,
         success:function(data){
+            console.log(data);
             var datosHabilidades = JSON.parse(data)
             $("#nombrePersonajeHabilidades").html(datosHabilidades[datosHabilidades.length-1].nombre_personaje);
             $("#tabla").html("");

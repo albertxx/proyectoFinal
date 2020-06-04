@@ -7,9 +7,9 @@
 .personaje{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom:40px;
 }
-
 
 .fotoPersonaje{
     display: flex;
@@ -169,4 +169,35 @@
 .tituloStats{
     color:#3499db;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+@media (max-width: 768px) {
+    header{
+        height: 315px;
+    }
+
+    header{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header .container img{
+        height: 160px;
+        width: 190px;
+    }
+
+    header .formularios{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px){
+    header .formularios .btn{
+        width: 150px;
+    }
 }
