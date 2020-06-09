@@ -61,9 +61,9 @@
             $("#tabla").html("");
             for (let i = 0; i < datosHabilidades.length-1; i++) {
                 if(datosHabilidades[datosHabilidades.length-1].nivelPersonaje < datosHabilidades[i].nivel_requerido){
-                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
                 }else{
-                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td></tr>");
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
                 }
             }
 
@@ -86,7 +86,7 @@
 <body>
 <header>
     <div class="container">
-        <img src="../View/img/logo.png"/>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
         <span class="textoInicial">Bienvenido a Ivalice, 
             <p>
                 <form action="../Controller/c.modificarUsuario.php" method="post">

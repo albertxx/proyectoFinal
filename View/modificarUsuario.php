@@ -35,7 +35,7 @@
 <body>
     <header>
         <div class="container">
-            <img src="../View/img/logo.png"/>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
             <p class="textoInicial">Bienvenido a Ivalice, 
                 <span>
                     <form action="../Controller/c.modificarUsuario.php" method="post">

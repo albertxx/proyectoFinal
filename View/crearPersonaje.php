@@ -56,7 +56,7 @@ require_once "../Model/Usuario.php";
 <body>
 <header>
     <div class="container">
-        <img src="../View/img/logo.png"/>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
         <span class="textoInicial">Bienvenido a Ivalice, 
             <p>
                 <form action="../Controller/c.modificarUsuario.php" method="post">

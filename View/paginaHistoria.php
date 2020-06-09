@@ -22,7 +22,7 @@ body{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../View/css/paginaHistoria.css">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
-    <title>INSERTAR AQUI NOMBRE MISION</title>
+    <title><?= $data['mision']->getNombreMision() ?></title>
 </head>
 <body>
     <div class="contenedorPrincipal">
