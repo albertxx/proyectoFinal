@@ -13,7 +13,8 @@ $estadisticasPersonaje = [
     "magia" => $estadisticas->getMagia(),
     "velocidad" => $estadisticas->getVelocidad(),
     "pm" => $estadisticas->getPm(),
-    "ph" => $estadisticas->getPh()
+    "ph" => $estadisticas->getPh(),
+    "xp" => $nombrePersonaje->getXpNecesaria()
 ];
 
 echo json_encode($estadisticasPersonaje);

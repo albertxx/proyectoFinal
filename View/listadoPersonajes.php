@@ -28,6 +28,7 @@
             $("#velocidad").html(datosPersonaje.velocidad);
             $("#pm").html(datosPersonaje.pm);
             $("#ph").html(datosPersonaje.ph);
+            $("#xpNecesaria").html(datosPersonaje.xp);
         },
         error:function(){
             $(".contenedorStats").html("Lo sentimos, aún no está disponible.");
@@ -61,7 +62,7 @@
             $("#tabla").html("");
             for (let i = 0; i < datosHabilidades.length-1; i++) {
                 if(datosHabilidades[datosHabilidades.length-1].nivelPersonaje < datosHabilidades[i].nivel_requerido){
-                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
+                    $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png' alt='bloqueado'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
                 }else{
                     $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
                 }
@@ -86,7 +87,7 @@
 <body>
 <header>
     <div class="container">
-        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png" alt="Logo de ivalice" /></a>
         <span class="textoInicial">Bienvenido a Ivalice, 
             <p>
                 <form action="../Controller/c.modificarUsuario.php" method="post">
@@ -127,27 +128,27 @@
     <!-- Inicio ventana modal de las estadísticas -->
     <div class="contenedorStats">
         <div class="stats">
-            <img src='../View/img/stats/vida1.png'><span class="textoStat">Vida:</span>
+            <img src='../View/img/stats/vida1.png' alt="Stat de vida"><span class="textoStat">Vida:</span>
             <span id="vida"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/atk1.png'><span class="textoStat">Ataque:</span>
+            <img src='../View/img/stats/atk1.png' alt="Stat de ataque"><span class="textoStat">Ataque:</span>
             <span id="atk"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/def1.png'><span class="textoStat">Defensa:</span>
+            <img src='../View/img/stats/def1.png' alt="Stat de defensa"><span class="textoStat">Defensa:</span>
             <span id="def"></span>
         </div>
 
         <div class="stats">
-            <img src='../View/img/stats/magia1.png'><span class="textoStat">Magia:</span>
+            <img src='../View/img/stats/magia1.png' alt="Stat de magia"><span class="textoStat">Magia:</span>
             <span id="magia"></span>
         </div>
         
         <div class="stats">
-            <img src='../View/img/stats/vel.png'><span class="textoStat">Velocidad:</span>
+            <img src='../View/img/stats/vel.png' alt="Stat de velocidad"><span class="textoStat">Velocidad:</span>
             <span id="velocidad"></span>
         </div>
 
@@ -156,8 +157,13 @@
             <span id="pm"></span>
         </div>
         <div class="stats">
-            <span class="ph texto stat">Puntos de habilidad (PH): </span> 
+            <span class="ph textoStat">Puntos de habilidad (PH): </span> 
             <span id="ph"></span>
+        </div>
+
+        <div class="stats">
+            <span class="textoStat">Siguiente nivel: </span>
+            <span id="xpNecesaria"></span>
         </div>
     </div>
     <!-- Fin ventana modal de las estadísticas -->
@@ -184,7 +190,7 @@
         
         <div class="container">
             <div class="fotoPersonaje">
-                <img src="<?= $carpetaFotosPersonaje.$data['personajes'][$i]->getFoto() ?>" alt="" class="imagenPersonaje">
+                <img src="<?= $carpetaFotosPersonaje.$data['personajes'][$i]->getFoto() ?>" alt="<?= $data['personajes'][$i]->getNombre() ?>" class="imagenPersonaje">
             </div>
             
             <form action="../Controller/c.borrarPersonaje.php" method="post">

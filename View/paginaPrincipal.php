@@ -13,7 +13,6 @@
     <script src="../jquery-3.4.1.js"></script>
     <title>Ivalice</title>
 </head>
-
 <script>
     function seleccionarPersonaje(nick, idMision){
         jQuery.ajax({
@@ -46,7 +45,7 @@
     <!-- Header de la página -->
     <header>
         <div class="container">
-            <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
+            <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png" alt="Logo de Ivalice"/></a>
             <p class="textoInicial">Bienvenido a Ivalice, 
                 <span>
                     <form action="../Controller/c.modificarUsuario.php" method="post">
@@ -73,9 +72,9 @@
             </form>
         </div>
 
-        <!-- Oro que actualmente tiene al jugador -->
+        <!-- Puntos que actualmente tiene al jugador -->
         <div class="oro">
-            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuario']->getPts() ?></span>
+            <img src="../View/img/money.png" alt="Tus puntos">&nbsp;&nbsp;<span><?= $data['usuario']->getPts() ?></span>
         </div>
     </header>
 
@@ -84,7 +83,7 @@
     <div class="ventanaModal">
         <div class="encabezadoVentanaModal">
             <span>¿Con qué personaje irás a la misión?</span>
-            <img src="../View/img/cancelar.png" alt="" onclick="seleccionarPersonaje()" class="cancelar">
+            <img src="../View/img/cancelar.png" alt="Botón para cancelar selección de personaje" onclick="seleccionarPersonaje()" class="cancelar">
         </div>
         <form action="../Controller/c.paginaHistoria.php" method="post">
             <select name="menuPersonajes" id="menuPersonajes" class="menuPersonajes"></select>
@@ -97,7 +96,6 @@
 
     <!-- Misiones a realizar -->
     <div class="misiones">
-    <h1 class="tituloMision">TUTORIAL</h1>
     <h1 class="tituloMision">HISTORIA</h1>
 
     <?php 
@@ -108,7 +106,7 @@
 
         <div class="mision">
             <div class="containerMision">
-                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="" class="imagenesMisiones">
+                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="<?= $data['misiones'][$i]->getNombreMision() ?>" class="imagenesMisiones">
                 
                 <?php 
 
@@ -139,7 +137,7 @@
                 for ($j=1; $j <= $data['misiones'][$i]->getDificultad(); $j++) { 
                 
             ?>
-                <img src="../View/img/estrella.png" alt="">
+                <img src="../View/img/estrella.png" alt="Estrella de dificultad">
             <?php
                 }   
             ?>

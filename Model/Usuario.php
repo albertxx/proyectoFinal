@@ -38,7 +38,6 @@ class Usuario{
         $conexion = IvaliceBD::connectDB();
 
         Personaje::modificarNick_usuario($nickAntiguo, $this->nick);
-
         $modificarUsuario = "UPDATE usuarios SET nick='".$this->nick."', pwd='".$this->pwd."', nombre='".$this->nombre."', apellidos='".$this->apellidos."', email='".$this->correo."', pts='".$this->pts."' WHERE nick='".$nickAntiguo."';";
         $conexion->exec($modificarUsuario);
 
@@ -70,6 +69,18 @@ class Usuario{
         return $usuario;
     }
 
+    public function ganarPuntos($ptsGanados){
+        $conexion = IvaliceBD::connectDB();
+        $puntosTotales = $this->pts + $ptsGanados;
+        $aumentoPuntos = "UPDATE usuarios SET pts='".$puntosTotales."' WHERE nick='".$this->nick."'; ";
+        $conexion->exec($aumentoPuntos);
+    }
+
+    public function perderPuntos($puntosPerdidos){
+        $conexion = IvaliceBD::connectDB();
+        $aumentoPuntos = "UPDATE usuarios SET pts='".$puntosPerdidos."' WHERE nick='".$this->nick."'; ";
+        $conexion->exec($aumentoPuntos);
+    }
     /**
      * Get the value of nick
      */ 

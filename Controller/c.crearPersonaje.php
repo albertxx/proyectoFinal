@@ -22,7 +22,7 @@ if(!isset($_COOKIE['usuario']) || $_COOKIE['usuario'] == ""){
 
         move_uploaded_file($_FILES['fotoPersonaje']['tmp_name'],$carpeta_imagenes.$nombre_imagen);
 
-        $nuevoPersonaje = new Personaje(null, $nombrePersonaje, $idClase, 1, $nombre_imagen, 0, $nick);
+        $nuevoPersonaje = new Personaje(null, $nombrePersonaje, $idClase, 1, $nombre_imagen, 0, $nick, 500);
         $vida = $_POST['vida'];
         $atk = $_POST['atk'];
         $def = $_POST['def'];

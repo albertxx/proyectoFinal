@@ -56,7 +56,7 @@ require_once "../Model/Usuario.php";
 <body>
 <header>
     <div class="container">
-        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png" alt="Logo de ivalice" /></a>
         <span class="textoInicial">Bienvenido a Ivalice, 
             <p>
                 <form action="../Controller/c.modificarUsuario.php" method="post">
@@ -81,14 +81,14 @@ require_once "../Model/Usuario.php";
 
     <!-- Oro que actualmente tiene al jugador -->
     <div class="oro">
-        <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getPts() ?></span>
+        <img src="../View/img/money.png" alt="Tus puntos">&nbsp;&nbsp;<span><?= $data['usuarioActual']->getPts() ?></span>
     </div>
 </header>
     <form action="../Controller/c.crearPersonaje.php" method="post" class="formulario" enctype="multipart/form-data">
         <div class="informacionFormulario">
             <!-- Input del nombre del personaje -->
             <div class="inputs">
-                <label>Nombre de tu personaje: </label><input type="text" name="nombrePersonaje" id="nombrePersonaje" class="btn" palceholder="Nombre de tu personaje">
+                <label>Nombre de tu personaje: </label><input type="text" name="nombrePersonaje" id="nombrePersonaje" class="btn" palceholder="Nombre de tu personaje" required>
             </div>
 
             <!-- Selección de clases -->
@@ -127,19 +127,19 @@ require_once "../Model/Usuario.php";
 
             <div class="stats">
                 <h4 class="tituloStats">Estadísticas iniciales</h4>
-                <img src='../View/img/stats/vida1.png'> &nbsp; <span id="vida"></span>
+                <img src='../View/img/stats/vida1.png' alt="Stat de vida"> &nbsp; <span id="vida"></span>
                 <input type="hidden" name="vida" id="vidaInput">
                 <br>
-                <img src="../View/img/stats/atk1.png" alt=""> &nbsp; <span id="atk"></span>
+                <img src="../View/img/stats/atk1.png" alt="Stat de ataque"> &nbsp; <span id="atk"></span>
                 <input type="hidden" name="atk" id="atkInput">
                 <br>
-                <img src="../View/img/stats/def1.png" alt=""> &nbsp; <span id="def"></span>
+                <img src="../View/img/stats/def1.png" alt="Stat de defensa"> &nbsp; <span id="def"></span>
                 <input type="hidden" name="def" id="defInput">
                 <br>
-                <img src="../View/img/stats/magia1.png" alt=""> &nbsp; <span id="magia"></span>
+                <img src="../View/img/stats/magia1.png" alt="Stat de magia"> &nbsp; <span id="magia"></span>
                 <input type="hidden" name="magia" id="magiaInput">
                 <br>
-                <img src="../View/img/stats/vel.png" alt=""> &nbsp; <span id="velocidad"></span>
+                <img src="../View/img/stats/vel.png" alt="Stat de velocidad"> &nbsp; <span id="velocidad"></span>
                 <input type="hidden" name="velocidad" id="velocidadInput">
                 <br>
                 <br>

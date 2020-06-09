@@ -10,11 +10,12 @@ class Enemigos{
     private $velocidad;
     private $idMision;
     private $foto;
+    private $exp;
 
     /**
      * Class constructor.
      */
-    public function __construct($nombre, $vida, $atk, $velocidad, $idMision, $foto)
+    public function __construct($nombre, $vida, $atk, $velocidad, $idMision, $foto, $exp)
     {
         
         $this->nombre = $nombre;
@@ -23,6 +24,7 @@ class Enemigos{
         $this->velocidad = $velocidad;
         $this->idMision = $idMision;
         $this->foto = $foto;
+        $this->exp = $exp;
     }
 
     public static function getEnemigoByIdMision($idMision){
@@ -30,7 +32,7 @@ class Enemigos{
         $seleccion = "SELECT * FROM enemigos WHERE idMision=\"".$idMision."\"";
         $consulta = $conexion->query($seleccion);
         $registro = $consulta->fetchObject();
-        $enemigo = new Enemigos($registro->nombre, $registro->vida, $registro->atk, $registro->velocidad, $registro->idMision, $registro->foto);
+        $enemigo = new Enemigos($registro->nombre, $registro->vida, $registro->atk, $registro->velocidad, $registro->idMision, $registro->foto, $registro->exp);
         
         return $enemigo;
     }
@@ -152,6 +154,26 @@ class Enemigos{
     public function setFoto($foto)
     {
         $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of exp
+     */ 
+    public function getExp()
+    {
+        return $this->exp;
+    }
+
+    /**
+     * Set the value of exp
+     *
+     * @return  self
+     */ 
+    public function setExp($exp)
+    {
+        $this->exp = $exp;
 
         return $this;
     }

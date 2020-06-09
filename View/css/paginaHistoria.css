@@ -42,10 +42,26 @@ body{
     color: white;
 }
 
+.recompensa{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+}
+
+.recompensa b{
+    color:#3499db;
+    margin-right:10px;
+}
 
 @media (max-width: 768px) {
     .contenedorPrincipal form{
         margin: 0 auto;
+    }
+
+    .marcoHistoria{
+        width:80vw;
     }
 }
 

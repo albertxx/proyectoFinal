@@ -42,6 +42,78 @@ class Estadisticas{
         $estadisticasPersonaje = new Estadisticas($consulta->idPersonaje, $consulta->vida, $consulta->atk, $consulta->def, $consulta->magia, $consulta->velocidad, $consulta->pm, $consulta->ph);
         return $estadisticasPersonaje;
     }
+
+    public static function subirNivel($idPersonaje)
+    {
+        $conexion = IvaliceBD::connectDB();
+        $personaje = Personaje::getPersonajeById($idPersonaje);
+        $estadisticas = Estadisticas::getEstadisticasByPersonaje($idPersonaje);
+
+        switch ($personaje->getIdClase()) {
+            case '1':
+                $vida = 25;
+                $atk = 2;
+                $def = 2;
+                $magia = 1;
+                $velocidad = 1;
+                $pm = 10;
+                $ph = 20;
+
+                break;
+            case '2':
+                $vida = 25;
+                $atk = 1;
+                $def = 1;
+                $magia = 4;
+                $velocidad = 1;
+                $pm = 30;
+                $ph = 10;
+                break;
+    
+            case '3':
+                $vida = 50;
+                $atk = 1;
+                $def = 3;
+                $magia = 2;
+                $velocidad = 1;
+                $pm = 20;
+                $ph = 20;
+                break;
+            case '4':
+                $vida = 20;
+                $atk = 3;
+                $def = 1;
+                $magia = 1;
+                $velocidad = 3;
+                $pm = 10;
+                $ph = 30;
+                break;
+    
+            case '5':
+                $vida = 20;
+                $atk = 4;
+                $def = 1;
+                $magia = 1;
+                $velocidad = 4;
+                $pm = 10;
+                $ph = 20;
+                break;
+            default:
+                break;
+        }
+
+        $nuevaVida = $vida + $estadisticas->getVida();
+        $nuevoAtk = $atk + $estadisticas->getAtk();
+        $nuevaDef = $def + $estadisticas->getDef();
+        $nuevaMagia = $magia + $estadisticas->getMagia();
+        $nuevaVelocidad = $velocidad + $estadisticas->getVelocidad();
+        $nPm = $pm + $estadisticas->getPm();
+        $nPh = $ph + $estadisticas->getPh();
+
+        $aumentoStats = "UPDATE estadisticas SET idPersonaje='".$idPersonaje."', vida='".$nuevaVida."',atk='".$nuevoAtk."', def='".$nuevaDef."', magia='".$nuevaMagia."', velocidad='".$nuevaVelocidad."', pm='".$nPm."', ph='".$nPh."' WHERE idPersonaje='".$idPersonaje."';";
+
+        $conexion->exec($aumentoStats);
+    }
     /**
      * Get the value of vida
      */ 

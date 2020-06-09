@@ -26,12 +26,39 @@ body{
 </head>
 <body>
     <div class="contenedorPrincipal">
-        <div class="marcoHistoria"><?= $data['mision']->getPreHistoria() ?></div><!-- Insertar aquí la historia  -->
-        <form action="../Controller/c.combate.php" method="post">
-            <input type="submit" value="Continuar" class="btnNegro">
-            <input type="hidden" name="idPersonaje" value="<?= $idPersonaje ?>">
-            <input type="hidden" name="idMision" value="<?= $idMision ?>">
-        </form>
+        <?php if(!isset($_REQUEST['victoria'])){ ?>
+            <div class="marcoHistoria"><?= $data['mision']->getPreHistoria() ?></div>
+        <?php }else if(isset($_REQUEST['victoria']) && $_REQUEST['victoria'] == 0){ ?>
+            <div class="marcoHistoria">
+                <span>¡Perdiste, la próxima vez será!</span>
+                <div class="recompensa">
+                    <span><b>Puntos perdidos:</b><?php echo $data['mision']->getPts_ganados() / 2; ?> </span>
+                </div>
+            </div>
+        <?php }else{ ?>
+            <div class="marcoHistoria">
+                <?= $data['mision']->getPostHistoria() ?>
+
+                <div class="recompensa">
+                    <span><b>Experiencia ganada:</b><?= $data['enemigo']->getExp() ?> </span>
+                    <span><b>Puntos ganados:</b><?= $data['mision']->getPts_ganados() ?> </span>
+                </div>
+            </div>
+        <?php } ?>
+
+
+        <?php if(!isset($_REQUEST['victoria'])){ ?>
+            <form action="../Controller/c.combate.php" method="post">
+                <input type="submit" value="Continuar" class="btnNegro">
+                <input type="hidden" name="idPersonaje" value="<?= $idPersonaje ?>">
+                <input type="hidden" name="idMision" value="<?= $idMision ?>">
+            </form>
+        <?php }else{ ?>
+            <form action="../Controller/c.guardarUsuario.php" method="post">
+                <input type="submit" value="Continuar" class="btnNegro">
+            </form>
+        <?php } ?>
+        
     </div>
 </body>
 </html>

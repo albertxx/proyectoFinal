@@ -31,6 +31,13 @@
         $("#btnContinuar").css("display", "block");
     }
 
+    function victoria(idPersonaje) {
+        $(location).attr('href','../Controller/c.finCombate.php?idMision='+id_Mision+'&victoria='+1+'&idPersonaje='+idPersonaje);
+    }
+
+    function derrota(idPersonaje) {
+        $(location).attr('href','../Controller/c.finCombate.php?idMision='+id_Mision+'&victoria='+0+'&idPersonaje='+idPersonaje);
+    }
     // Función para abrir la ventana modal de las estadísticas
     function abrirVentanaEstadisticas(idPersonaje) {
         jQuery.ajax({
@@ -172,7 +179,7 @@ var vecesAturdido = 0;
 
     // Función de ataque enemigo
     function turnoEnemigo(idMision) {
-        var habilidad = Math.round(Math.random()*8);
+        var habilidad = Math.round(Math.random()*6);
         // Efecto de veneno en caso de estar aplicado
         if(turnosVeneno > 0){
             turnosVeneno--;
@@ -230,7 +237,7 @@ var vecesAturdido = 0;
                                 
                                 if(turnosVeneno == 0){
                                     turnosVeneno = 3;
-                                    $("#venenoPersonaje").html("<img src='../View/img/estados/veneno.png' />");
+                                    $("#venenoPersonaje").html("<img src='../View/img/estados/veneno.png' alt='icono de envenenamiento de tu personaje' />");
                                 }
 
                                 
@@ -246,7 +253,7 @@ var vecesAturdido = 0;
                                 }
 
                                 
-                                $("#estadoEnemigo").append("<img src='../View/img/estados/boost_atk.png' />");
+                                $("#estadoEnemigo").append("<img src='../View/img/estados/boost_atk.png' alt='icono de aumento de ataque enemigo' />");
                                 
                                 // Habilidades sin efectos
                             }else{
@@ -363,7 +370,7 @@ var vecesAturdido = 0;
             if(turnosDormir > 0){
                 turnosDormir--;
             }else{
-                $("#congelarEnemigo").html("");
+                $("#dormirEnemigo").html("");
             }
 
             if(turnosBoostDef <= 0){
@@ -388,6 +395,7 @@ var vecesAturdido = 0;
                 $("#textoCombate").html("¡Has perdido!");
                 $("#vidaPersonaje").html(0);
                 finBatalla();
+                derrota();
             }
 
             }else{
@@ -523,7 +531,6 @@ var vecesAturdido = 0;
         timeout: 5000,
         success:function(data){
             var habilidad = JSON.parse(data);
-            console.log(data);
             var dmg = 0;
             var dmgHabilidad = parseInt(habilidad.dmg);
             var ataquePersonaje = parseInt(habilidad.ataque);
@@ -536,7 +543,7 @@ var vecesAturdido = 0;
                             if(turnosVenenoPersonaje <= 0){
                                 turnosVenenoPersonaje = 3;
                                 
-                                $("#venenoEnemigo").html("<img src='../View/img/estados/veneno.png' />");
+                                $("#venenoEnemigo").html("<img src='../View/img/estados/veneno.png' alt='icono veneno enemigo' />");
                             }
 
                             if(dmgHabilidad == 0){
@@ -545,7 +552,6 @@ var vecesAturdido = 0;
 
                                 dmgHabilidad += comprobarTipoAtaque(habilidad.tipo, ataquePersonaje, magiaPersonaje, dmgHabilidad);
                                 dmg += dmgHabilidad;
-                                console.log(habilidad.nombre);
 
                                 $("#textoCombate").html(habilidad.nombrePersonaje + " usó " + habilidad.nombre + " y envenenó al enemigo causándole " + dmgHabilidad + " de daño.");
                             }
@@ -555,7 +561,7 @@ var vecesAturdido = 0;
                         case "quemar":
                             if(turnosQuemadura == 0){
                                 turnosQuemadura = 3;
-                                $("#quemaduraEnemigo").html("<img src='../View/img/estados/quemadura.png' />");
+                                $("#quemaduraEnemigo").html("<img src='../View/img/estados/quemadura.png' alt='icono quemadura enemigo' />");
                             }
                             
                             
@@ -573,7 +579,7 @@ var vecesAturdido = 0;
                         case "congelar":
                             if(turnosCongelar == 0){
                                 turnosCongelar = 3;
-                                $("#congelarEnemigo").html("<img src='../View/img/estados/hielo.png' />");
+                                $("#congelarEnemigo").html("<img src='../View/img/estados/hielo.png' alt='icono congelado enemigo' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -617,7 +623,7 @@ var vecesAturdido = 0;
                         case "ataque":
                             if(turnosBoostAtk == 0){
                                 turnosBoostAtk = 3;
-                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk.png' />");
+                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk.png' alt='icono aumento de ataque personaje' />");
                             }
 
                             
@@ -636,7 +642,7 @@ var vecesAturdido = 0;
                         case "defensa":
                             if(turnosBoostDef == 0){
                                 turnosBoostDef = 3;
-                                $("#defPersonaje").append("<img src='../View/img/estados/boost_def.png' />");
+                                $("#defPersonaje").append("<img src='../View/img/estados/boost_def.png' alt='icono aumento defensa personaje' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -655,7 +661,7 @@ var vecesAturdido = 0;
                             
                             if(turnosCeguera == 0){
                                 turnosCeguera = 3;
-                                $("#cegueraEnemigo").append("<img src='../View/img/estados/ceguera.png' />");
+                                $("#cegueraEnemigo").append("<img src='../View/img/estados/ceguera.png' alt='icono cegado enemigo' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -674,7 +680,7 @@ var vecesAturdido = 0;
                         case "magia":
                             if(turnosBoostMagia == 0){
                                 turnosBoostMagia = 3;
-                                $("#magiaPersonaje").append("<img src='../View/img/estados/boost_magia.png' />");
+                                $("#magiaPersonaje").append("<img src='../View/img/estados/boost_magia.png' alt='icono aumento de magia personaje' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -692,7 +698,7 @@ var vecesAturdido = 0;
                         case "dormir":
                             if(turnosDormir == 0){
                                 turnosDormir = 3;
-                                $("#dormirEnemigo").html("<img src='../View/img/estados/dormir.png' />");
+                                $("#dormirEnemigo").html("<img src='../View/img/estados/dormir.png' alt='icono dormido enemigo' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -710,7 +716,7 @@ var vecesAturdido = 0;
                         case "ataque2":
                             if(turnosBoostAtk2 == 0){
                                 turnosBoostAtk2 = 3;
-                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk2.png' />");
+                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk2.png' alt='icono de aumento masivo de ataque personaje' />");
                                 activarLocura();
                             }
                             
@@ -744,7 +750,7 @@ var vecesAturdido = 0;
                                 if(aturdido == false){
                                     aturdido = true;
                                     vecesAturdido++;
-                                    $("#aturdirEnemigo").append("<img src='../View/img/estados/aturdir.png' />");
+                                    $("#aturdirEnemigo").append("<img src='../View/img/estados/aturdir.png' alt='icono enemigo aturdido' />");
                                 }else if(vecesAturdido == 1){
                                     vecesAturdido++;
                                 }
@@ -854,7 +860,7 @@ var vecesAturdido = 0;
     function defender(nombrePersonaje) {
         if(turno == false){
             $("#textoCombate").html(nombrePersonaje + " se está defendiendo.");
-            $("#defensaPersonaje").html("<img src='../View/img/estados/def.png' />");
+            $("#defensaPersonaje").html("<img src='../View/img/estados/def.png' alt='icono personaje defendiendose' />");
             defenderse = true;
             turno = true;
             cambiarBotones();
@@ -894,10 +900,10 @@ var vecesAturdido = 0;
     <!-- Contenedor que contendrá la información del enemigo -->
     <div class="containerEnemigo">
         <div class="enemigo">
-            <img src="<?= $carpetaEnemigos.$data['enemigo']->getFoto() ?>" alt="">
+            <img src="<?= $carpetaEnemigos.$data['enemigo']->getFoto() ?>" alt="<?= $data['enemigo']->getNombre() ?>">
         </div>
         <p class="vida">
-            <img src="../View/img/stats/vida.png" alt=""> 
+            <img src="../View/img/stats/vida.png" alt="vida enemigo"> 
             <span id="vidaEnemigo"><?= $data['enemigo']->getVida() ?></span> / <?= $data['enemigo']->getVida() ?>
             <span id="venenoEnemigo"></span>
             <span id="congelarEnemigo"></span>
@@ -914,7 +920,7 @@ var vecesAturdido = 0;
         <div class="personaje">
             
             <p class="vida">
-                <img src="../View/img/stats/vida.png" alt="" height="10" width="10"> 
+                <img src="../View/img/stats/vida.png" alt="vida personaje" height="10" width="10"> 
                 <span id="vidaPersonaje"><?= $data['estadisticas']->getVida() ?></span> / <?= $data['estadisticas']->getVida() ?>
                 <span id="venenoPersonaje"></span>
                 <span id="defPersonaje"></span>
@@ -922,7 +928,7 @@ var vecesAturdido = 0;
                 <span id="atkPersonaje"></span>
                 <span id="defensaPersonaje"></span>
             </p>
-            <img src="<?= $carpetaPersonajes.$data['personajeSeleccionado']->getFoto() ?>" alt="">
+            <img src="<?= $carpetaPersonajes.$data['personajeSeleccionado']->getFoto() ?>" alt="<?= $data['personajeSeleccionado']->getNombre() ?>">
         </div>
 
         <div class="datosPersonaje">
@@ -974,11 +980,11 @@ var vecesAturdido = 0;
             </div>
 
             <div class="abandonar">
-                <button id="btnAbandonar" class="botones" onclick="$(location).attr('href','../Controller/c.guardarUsuario.php');">
+                <button id="btnAbandonar" class="botones" onclick="derrota(<?= $data['personajeSeleccionado']->getIdPersonaje() ?>)">
                     <span>Abandonar</span>
                 </button>
 
-                <button id="btnContinuar" class="botones" onclick="$(location).attr('href','../Controller/c.listarPersonajes.php');" style="display: none;">
+                <button id="btnContinuar" class="botones" onclick="victoria(<?= $data['personajeSeleccionado']->getIdPersonaje() ?>)" style="display: none;">
                     <span>Continuar</span>
                 </button>
             </div>
@@ -994,27 +1000,27 @@ var vecesAturdido = 0;
 <!-- Inicio ventana modal de las estadísticas -->
 <div class="contenedorStats">
     <div class="stats">
-        <img src='../View/img/stats/vida1.png'><span class="textoStat">Vida:</span>
+        <img src='../View/img/stats/vida1.png' alt='stat de vida'><span class="textoStat">Vida:</span>
         <span id="vida"></span>
     </div>
 
     <div class="stats">
-        <img src='../View/img/stats/atk1.png'><span class="textoStat">Ataque:</span>
+        <img src='../View/img/stats/atk1.png' alt='stat de ataque'><span class="textoStat">Ataque:</span>
         <span id="atk"></span>
     </div>
 
     <div class="stats">
-        <img src='../View/img/stats/def1.png'><span class="textoStat">Defensa:</span>
+        <img src='../View/img/stats/def1.png' alt='stat de defensa'><span class="textoStat">Defensa:</span>
         <span id="def"></span>
     </div>
 
     <div class="stats">
-        <img src='../View/img/stats/magia1.png'><span class="textoStat">Magia:</span>
+        <img src='../View/img/stats/magia1.png' alt='stat de magia'><span class="textoStat">Magia:</span>
         <span id="magia"></span>
     </div>
     
     <div class="stats">
-        <img src='../View/img/stats/vel.png'><span class="textoStat">Velocidad:</span>
+        <img src='../View/img/stats/vel.png' alt='stat de velocidad'><span class="textoStat">Velocidad:</span>
         <span id="velocidad"></span>
     </div>
 

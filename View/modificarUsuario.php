@@ -35,7 +35,7 @@
 <body>
     <header>
         <div class="container">
-        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png"/></a>
+        <a href="../Controller/c.guardarUsuario.php"><img src="../View/img/logo.png" alt="Logo página Ivalice" /></a>
             <p class="textoInicial">Bienvenido a Ivalice, 
                 <span>
                     <form action="../Controller/c.modificarUsuario.php" method="post">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="oro">
-            <img src="../View/img/money.png" alt="Tu oro">&nbsp;&nbsp;<span><?= $data['datosUsuario']->getPts() ?></span>
+            <img src="../View/img/money.png" alt="Tus puntos">&nbsp;&nbsp;<span><?= $data['datosUsuario']->getPts() ?></span>
         </div>
     </header>
 
