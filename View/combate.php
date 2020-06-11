@@ -263,21 +263,21 @@ var vecesAturdido = 0;
                                 
                                 $("#textoCombate").html(datosHabilidad.nombreEnemigo + " usó " + datosHabilidad.nombreHabilidad + " y aumentó su ataque.");
                                 
-                                if(turnosBoost == 0){
+                                if(turnosBoost <= 0){
                                     turnosBoost = 3;
+                                    
                                 }
 
                                 
-                                $("#estadoEnemigo").append("<img src='../View/img/estados/boost_atk.png' alt='icono de aumento de ataque enemigo' title='Aumento de ataque' />");
+                                $("#estadoEnemigo").html("<img src='../View/img/estados/boost_atk.png' alt='icono de aumento de ataque enemigo' title='Aumento de ataque' />");
                                 
                                 // Habilidades sin efectos
                             }else{
                                 // En caso de tener un boost de atk
                                 if(turnosBoost > 0){
                                     var dmgRealizado = 0;
-                                    dmgRealizado = parseInt(datosHabilidad.dmg) + ((parseInt(datosHabilidad.atkEnemigo) * 20) / 100);
-                                    dmg += dmgRealizado;
-
+                                    dmgRealizado = ((parseInt(datosHabilidad.atkEnemigo) * 20) / 100);
+                                    
                                     if(turnosBoostDef > 0){
                                         var defensaPersonaje = parseInt(datosHabilidad.def);
                                         defensaPersonaje += (defensaPersonaje*10) / 100;
@@ -289,8 +289,11 @@ var vecesAturdido = 0;
                                         }
                                         
                                     }else{
+                                        
                                         if(parseInt(datosHabilidad.dmg) > parseInt(datosHabilidad.def)){
-                                            dmg = (parseInt(datosHabilidad.dmg) - parseInt(datosHabilidad.def));
+                                            dmg = Math.abs((parseInt(datosHabilidad.dmg) - parseInt(datosHabilidad.def)));
+                                            dmg += dmgRealizado;
+                                            
                                         }else{
                                             dmg = 1;
                                         }
@@ -406,6 +409,7 @@ var vecesAturdido = 0;
             if(defenderse == false){
 
             vidaPersonaje = vidaPersonaje - dmg;
+            
             if(vidaPersonaje > 0){
                 $("#vidaPersonaje").html(vidaPersonaje);
             }else{
@@ -677,7 +681,7 @@ var vecesAturdido = 0;
                             
                             if(turnosCeguera == 0){
                                 turnosCeguera = 3;
-                                $("#cegueraEnemigo").html("<img src='../View/img/estados/ceguera.png' alt='icono cegado enemigo' title='Cegado' />");
+                                $("#cegueraEnemigo").html("<img src='../View/img/estados/ceguera.png' alt='icono cegado enemigo' title='Cegado 50% de fallar' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -844,7 +848,8 @@ var vecesAturdido = 0;
     function ataqueNormal(nombrePersonaje, atk) {
 
         if(turno == false){
-            var dmg = atk + (atk * 0.1);
+            dmg = atk + (atk * 2);
+
             dmg = Math.ceil(dmg);
             dmg += aplicarVeneno();
             dmg += aplicarQuemadura();
@@ -928,6 +933,7 @@ var vecesAturdido = 0;
             <span id="quemaduraEnemigo"></span>
             <span id="dormirEnemigo"></span>
             <span id="aturdirEnemigo"></span>
+            <span id="estadoEnemigo"></span>
         </p>
     </div>
 

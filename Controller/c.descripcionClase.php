@@ -15,8 +15,8 @@ if($_POST['idClase'] != ""){
                 "def" => 3,
                 "magia" => 1,
                 "velocidad" => 3,
-                "pm" => 100,
-                "ph" => 100
+                "pm" => 115,
+                "ph" => 115
             ];
             break;
         case '2':
@@ -27,7 +27,7 @@ if($_POST['idClase'] != ""){
                 "def" => 2,
                 "magia" => 5,
                 "velocidad" => 2,
-                "pm" => 200,
+                "pm" => 130,
                 "ph" => 50
             ];
             break;
@@ -40,20 +40,20 @@ if($_POST['idClase'] != ""){
                 "def" => 5,
                 "magia" => 3,
                 "velocidad" => 2,
-                "pm" => 150,
-                "ph" => 100
+                "pm" => 125,
+                "ph" => 125
             ];
             break;
         case '4':
             $clase = [
                 "descripcion" => $descripcionClase,
-                "vida" => 140,
+                "vida" => 170,
                 "atk" => 4,
                 "def" => 2,
                 "magia" => 2,
                 "velocidad" => 5,
                 "pm" => 80,
-                "ph" => 150
+                "ph" => 175
             ];
             break;
 
@@ -66,7 +66,7 @@ if($_POST['idClase'] != ""){
                 "magia" => 1,
                 "velocidad" => 3,
                 "pm" => 50,
-                "ph" => 200
+                "ph" => 150
             ];
             break;
         default:

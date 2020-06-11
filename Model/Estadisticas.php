@@ -66,7 +66,7 @@ class Estadisticas{
                 $def = 1;
                 $magia = 4;
                 $velocidad = 1;
-                $pm = 30;
+                $pm = 25;
                 $ph = 10;
                 break;
     
@@ -86,7 +86,7 @@ class Estadisticas{
                 $magia = 1;
                 $velocidad = 3;
                 $pm = 10;
-                $ph = 30;
+                $ph = 20;
                 break;
     
             case '5':
