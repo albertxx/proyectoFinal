@@ -14,6 +14,16 @@
     <title>Ivalice</title>
 </head>
 <script>
+    // Función para abrir la ventana de ayuda
+    function abrirAyuda() { 
+        if($("#ventanaAyuda").css("visibility") == "hidden"){
+            $("#ventanaAyuda").css("visibility", "visible");
+            $(".ventanaModal").css("visibility", "hidden");
+        }else{
+            $("#ventanaAyuda").css("visibility", "hidden");
+        }
+    }
+
     function seleccionarPersonaje(nick, idMision){
         jQuery.ajax({
         url: "../Controller/c.listarPersonajes.php",
@@ -36,10 +46,12 @@
 
         if($(".ventanaModal").css("visibility") == "hidden"){
             $(".ventanaModal").css("visibility", "visible");
+            $("#ventanaAyuda").css("visibility", "hidden");
         }else{
             $(".ventanaModal").css("visibility", "hidden");
         }
     }
+    
 </script>
 <body>
     <!-- Header de la página -->
@@ -70,6 +82,12 @@
             <form action="../Controller/c.listarPersonajes.php">
                 <input type="submit" value="Listado de personajes" class="btn">
             </form>
+
+            <span>
+                <button class="btn" onclick="abrirAyuda()">
+                    Ayuda
+                </button>
+            </span>
         </div>
 
         <!-- Puntos que actualmente tiene al jugador -->
@@ -93,6 +111,41 @@
     </div>
     <!-- Fin de la ventana modal de selección de personaje para la misión -->
 
+    <div class="ventanaModalAyuda" id="ventanaAyuda">
+        <div class="encabezadoVentanaAyuda">
+            <span>Información sobre la página principal</span>
+            <img src="../View/img/cancelar.png" alt="Cerrar ventana modal" title="Cerrar ventana modal" onclick="abrirAyuda()">
+        </div>
+        
+        <div class="infoAyuda">
+            <p>
+                <b>¿Cómo creo mi personaje?</b> <br>
+                Pulsa en el botón de "Crear personaje" y allí podrás crearlo a tu gusto.
+            </p>
+
+            <p>
+                <b>¿Cómo veo mi lista de los personajes que he creado?</b> <br>
+                Pulsa el botón de "Listado de personajes" y allí podrás verlos.
+            </p>
+
+            <p>
+                <b>¿Cómo accedo a una misión?</b> <br>
+                Sólo tienes que pulsar el botón de "Realizar misión" y seleccionar el personaje que quieras usar.
+                <br>
+                Si en el botón pone "BLOQUEADO" es que aún no tienes los puntos suficientes para participar en esa misión.
+            </p>
+
+            <p>
+                <b>¿Qué son los puntos?</b> <br>
+                Los puntos sirven para desbloquear las misiones. Tus puntos aparecen en la esquina superior derecha de la pantalla.
+            </p>
+
+            <p>
+                <b>¿Cómo cambio mi contraseña, nombre, etc?</b> <br>
+                Pulsa en tu actual nombre de usuario, junto al logo de la esquina superior derecha y accederás a esa ventana.
+            </p>
+        </div>
+    </div>
 
     <!-- Misiones a realizar -->
     <div class="misiones">
@@ -106,7 +159,7 @@
 
         <div class="mision">
             <div class="containerMision">
-                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="<?= $data['misiones'][$i]->getNombreMision() ?>" class="imagenesMisiones">
+                <img src="<?= $carpetaMisiones.$data['misiones'][$i]->getFoto().".png" ?>" alt="<?= $data['misiones'][$i]->getNombreMision() ?>" title="<?= $data['misiones'][$i]->getNombreMision() ?>" class="imagenesMisiones">
                 
                 <?php 
 
@@ -147,5 +200,6 @@
     <?php
     }
     ?>
+</div>
 </body>
 </html>

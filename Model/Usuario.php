@@ -78,7 +78,13 @@ class Usuario{
 
     public function perderPuntos($puntosPerdidos){
         $conexion = IvaliceBD::connectDB();
-        $aumentoPuntos = "UPDATE usuarios SET pts='".$puntosPerdidos."' WHERE nick='".$this->nick."'; ";
+        $puntosTotales = $this->pts - $puntosPerdidos;
+
+        if($puntosTotales < 0){
+            $puntosTotales = 0;
+        }
+
+        $aumentoPuntos = "UPDATE usuarios SET pts='".$puntosTotales."' WHERE nick='".$this->nick."'; ";
         $conexion->exec($aumentoPuntos);
     }
     /**

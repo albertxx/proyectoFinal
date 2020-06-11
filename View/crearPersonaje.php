@@ -8,6 +8,7 @@ require_once "../Model/Usuario.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../View/css/crearPersonaje.css">
+    <link rel="stylesheet" href="../View/css/paginaPrincipal.css">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
     <script src="../jquery-3.4.1.js"></script>
     <title>Crear personaje</title>
@@ -52,6 +53,15 @@ require_once "../Model/Usuario.php";
     }
     });
 }
+
+// Función para abrir la ventana de ayuda
+function abrirAyuda() { 
+    if($("#ventanaAyuda").css("visibility") == "hidden"){
+        $("#ventanaAyuda").css("visibility", "visible");
+    }else{
+        $("#ventanaAyuda").css("visibility", "hidden");
+    }
+}
 </script>
 <body>
 <header>
@@ -77,6 +87,12 @@ require_once "../Model/Usuario.php";
         <form action="../Controller/c.listarPersonajes.php">
             <input type="submit" value="Listado de personajes" class="btn">
         </form>
+
+        <span>
+            <button class="btn" onclick="abrirAyuda()">
+                Ayuda
+            </button>
+        </span>
     </div>
 
     <!-- Oro que actualmente tiene al jugador -->
@@ -151,6 +167,45 @@ require_once "../Model/Usuario.php";
             </div>
         </div>
     </form>
+
+    <div class="ventanaModalAyuda" id="ventanaAyuda">
+        <div class="encabezadoVentanaAyuda">
+            <span>Información sobre la página de creación de personaje</span>
+            <img src="../View/img/cancelar.png" alt="Cerrar ventana modal" title="Cerrar ventana modal" onclick="abrirAyuda()">
+        </div>
+        
+        <div class="infoAyuda">
+            <p>
+                <b>¿Cómo creo mi personaje?</b> <br>
+                Introduce su nombre en la zona indicada, selecciona la clase que más te atraiga y añade la foto que quieras y sólo tendrás que pulsar el botón de "Crear personaje" para crearlo
+            </p>
+
+            <p>
+                <b>¿Dónde veo las estadísticas de la clase?</b> <br>
+                Las podrás ver en el recuadro de la derecha. Para conocer las características de las siguientes clases, sólo tienes que seleccionarlas en el formulario y el recuadro se adaptará a la clase.
+            </p>
+
+            <p>
+                <b>¿Dónde veo las habilidades que puede aprender mi personaje?</b> <br>
+                Eso sólo podrás verlo una vez hayas creado a tu personaje. ¡Pero no te preocupes! Si no te gusta simplemente bórralo. 
+            </p>
+
+            <p>
+                <b>¿Cuántos personajes puedo crear?</b> <br>
+                Los que quieras. Puedes tener un personaje de cada clase, para ver sus habilidades y como funciona en combate y quedarte con el que más te guste.
+            </p>
+
+            <p>
+                <b>¿Cómo vuelvo a la página principal?</b> <br>
+                Simplemente tienes que pulsar el botón del encabezado de "Volver a la página principal" o pulsar el logo de la página situado en la esquina superior derecha de la pantalla.
+            </p>
+
+            <p>
+                <b>¿Puedo acceder a las otras funciones de la aplicación desde aquí?</b> <br>
+                ¡Claro! En cada uno de los botones pone la página a la que te llevará, y puedes viajar desde cada una de las páginas a cualquiera de las otras.
+            </p>
+        </div>
+    </div>
 
 <script type="application/javascript">
     jQuery('input[type=file]').change(function(){

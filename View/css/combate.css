@@ -94,6 +94,7 @@ body{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    margin-right: 30px;
     width: 70%;
 }
 
@@ -209,12 +210,12 @@ body{
 
 
 .ventanaModalHabilidades{
-    width: 700px;
+    width: 60%;
     background-color: #494747fb;
     visibility: hidden;
     position: fixed;
     color: white;
-    bottom:35%;
+    bottom:30%;
     left:20%;
 }
 
@@ -266,6 +267,32 @@ body{
     padding:10px;
 }
 
+.ventanaModalAyuda{
+    width: 40%;
+    background-color: #494747fb;
+    width: 50%;
+    bottom: 10%;
+    visibility: hidden;
+    position: fixed;
+    color: white;
+    left:5%;
+}
+
+#ventanaAyuda .encabezadoVentana{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.ventanaModalAyuda .info{
+    margin:10px;
+}
+
+.ventanaModalAyuda .info b{
+    display: flex;
+    justify-content: center;
+    color: rgb(228, 18, 165);
+}
 @media (max-width: 768px) {
     .enemigo{
         margin: 0 auto;
@@ -281,19 +308,29 @@ body{
         display: none;
     }
 
-    .datosPersonaje .pm span, .datosPersonaje .ph span{
-        visibility: hidden;
+    .datosPersonaje .pm .pmTotal, .datosPersonaje .ph .phTotal{
+        display: none;
     }
 
-    .datosPersonaje .stats .pm, .datosPersonaje .stats .ph{
-        background-color:transparent;
+    .datosPersonaje .stats .pm .textoPM, .datosPersonaje .stats .ph .textoPH{
+        display:none;
     }
 
+    .ventanaModalAyuda{
+        top: 10%;
+        overflow-y: scroll;
+    }
     .datosPersonaje .stats .pm{
         color: rgb(0, 110, 255);
     }
 
     .datosPersonaje .stats .ph{
         color: rgb(17, 212, 17);
+    }
+
+    .ventanaModalHabilidades{
+        top: 10%;
+        width: 65%;
+        overflow-y: scroll;
     }
 }

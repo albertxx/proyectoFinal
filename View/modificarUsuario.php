@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
-    <script src="../jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="../View/css/paginaPrincipal.css">
     <link rel="stylesheet" href="../View/css/modificarUsuario.css">
+    <script src="../jquery-3.4.1.js"></script>
     <title>Ivalice</title>
 </head>
 <script>

@@ -22,13 +22,28 @@
 </head>
 <script>
 
+    // Función para abrir la ventana de ayuda
+    function abrirAyuda() { 
+        if($("#ventanaAyuda").css("visibility") == "hidden"){
+            $("#ventanaAyuda").css("visibility", "visible");
+        }else{
+            $("#ventanaAyuda").css("visibility", "hidden");
+        }
+    }
+
     // Función de una vez haya terminado la pelea
     function finBatalla() {
-        $("#btnHabilidades").attr('disabled','disabled');
-        $("#btnAtaqueNormal").attr('disabled','disabled');
-        $("#btnDef").attr('disabled','disabled');
-        $("#btnAbandonar").css("display", "none");
-        $("#btnContinuar").css("display", "block");
+        if(vidaPersonaje > 0){
+            $("#btnHabilidades").attr('disabled','disabled');
+            $("#btnAtaqueNormal").attr('disabled','disabled');
+            $("#btnDef").attr('disabled','disabled');
+            $("#btnAbandonar").css("display", "none");
+            $("#btnContinuar").css("display", "block");
+        }else{
+            $("#btnHabilidades").attr('disabled','disabled');
+            $("#btnAtaqueNormal").attr('disabled','disabled');
+            $("#btnDef").attr('disabled','disabled');
+        }
     }
 
     function victoria(idPersonaje) {
@@ -237,7 +252,7 @@ var vecesAturdido = 0;
                                 
                                 if(turnosVeneno == 0){
                                     turnosVeneno = 3;
-                                    $("#venenoPersonaje").html("<img src='../View/img/estados/veneno.png' alt='icono de envenenamiento de tu personaje' />");
+                                    $("#venenoPersonaje").html("<img src='../View/img/estados/veneno.png' alt='icono de envenenamiento de tu personaje' title='Envenenado' />");
                                 }
 
                                 
@@ -253,7 +268,7 @@ var vecesAturdido = 0;
                                 }
 
                                 
-                                $("#estadoEnemigo").append("<img src='../View/img/estados/boost_atk.png' alt='icono de aumento de ataque enemigo' />");
+                                $("#estadoEnemigo").append("<img src='../View/img/estados/boost_atk.png' alt='icono de aumento de ataque enemigo' title='Aumento de ataque' />");
                                 
                                 // Habilidades sin efectos
                             }else{
@@ -343,12 +358,14 @@ var vecesAturdido = 0;
             }else{
                 if(turnosCongelar > 0){
                     $("#textoCombate").html(datosHabilidad.nombreEnemigo + " está congelado y no puede hacer nada.");
+                    dmg = 0;
                 }else if(turnosDormir > 0){
                     $("#textoCombate").html(datosHabilidad.nombreEnemigo + " está dormido y no puede hacer nada.");
+                    dmg = 0;
                 }else if (aturdido == true){
                     $("#textoCombate").html(datosHabilidad.nombreEnemigo + " está aturdido y no puede hacer nada.");
                     aturdido = false;
-
+                    dmg = 0;
                     
                     if(vecesAturdido == 2){
                         vecesAturdido = 0;
@@ -388,14 +405,13 @@ var vecesAturdido = 0;
             // Se aplica el daño hecho
             if(defenderse == false){
 
-                vidaPersonaje = vidaPersonaje - dmg;
+            vidaPersonaje = vidaPersonaje - dmg;
             if(vidaPersonaje > 0){
                 $("#vidaPersonaje").html(vidaPersonaje);
             }else{
                 $("#textoCombate").html("¡Has perdido!");
                 $("#vidaPersonaje").html(0);
                 finBatalla();
-                derrota();
             }
 
             }else{
@@ -543,7 +559,7 @@ var vecesAturdido = 0;
                             if(turnosVenenoPersonaje <= 0){
                                 turnosVenenoPersonaje = 3;
                                 
-                                $("#venenoEnemigo").html("<img src='../View/img/estados/veneno.png' alt='icono veneno enemigo' />");
+                                $("#venenoEnemigo").html("<img src='../View/img/estados/veneno.png' alt='icono veneno enemigo' title='Envenenado' />");
                             }
 
                             if(dmgHabilidad == 0){
@@ -561,7 +577,7 @@ var vecesAturdido = 0;
                         case "quemar":
                             if(turnosQuemadura == 0){
                                 turnosQuemadura = 3;
-                                $("#quemaduraEnemigo").html("<img src='../View/img/estados/quemadura.png' alt='icono quemadura enemigo' />");
+                                $("#quemaduraEnemigo").html("<img src='../View/img/estados/quemadura.png' alt='icono quemadura enemigo' title='Quemado' />");
                             }
                             
                             
@@ -579,7 +595,7 @@ var vecesAturdido = 0;
                         case "congelar":
                             if(turnosCongelar == 0){
                                 turnosCongelar = 3;
-                                $("#congelarEnemigo").html("<img src='../View/img/estados/hielo.png' alt='icono congelado enemigo' />");
+                                $("#congelarEnemigo").html("<img src='../View/img/estados/hielo.png' alt='icono congelado enemigo' title='Congelado' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -623,7 +639,7 @@ var vecesAturdido = 0;
                         case "ataque":
                             if(turnosBoostAtk == 0){
                                 turnosBoostAtk = 3;
-                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk.png' alt='icono aumento de ataque personaje' />");
+                                $("#atkPersonaje").html("<img src='../View/img/estados/boost_atk.png' alt='icono aumento de ataque personaje' title='Aumento de ataque' />");
                             }
 
                             
@@ -642,7 +658,7 @@ var vecesAturdido = 0;
                         case "defensa":
                             if(turnosBoostDef == 0){
                                 turnosBoostDef = 3;
-                                $("#defPersonaje").append("<img src='../View/img/estados/boost_def.png' alt='icono aumento defensa personaje' />");
+                                $("#defPersonaje").html("<img src='../View/img/estados/boost_def.png' alt='icono aumento defensa personaje' title='Aumento de defensa' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -661,7 +677,7 @@ var vecesAturdido = 0;
                             
                             if(turnosCeguera == 0){
                                 turnosCeguera = 3;
-                                $("#cegueraEnemigo").append("<img src='../View/img/estados/ceguera.png' alt='icono cegado enemigo' />");
+                                $("#cegueraEnemigo").html("<img src='../View/img/estados/ceguera.png' alt='icono cegado enemigo' title='Cegado' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -680,7 +696,7 @@ var vecesAturdido = 0;
                         case "magia":
                             if(turnosBoostMagia == 0){
                                 turnosBoostMagia = 3;
-                                $("#magiaPersonaje").append("<img src='../View/img/estados/boost_magia.png' alt='icono aumento de magia personaje' />");
+                                $("#magiaPersonaje").html("<img src='../View/img/estados/boost_magia.png' alt='icono aumento de magia personaje' title='Aumento de magia' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -698,7 +714,7 @@ var vecesAturdido = 0;
                         case "dormir":
                             if(turnosDormir == 0){
                                 turnosDormir = 3;
-                                $("#dormirEnemigo").html("<img src='../View/img/estados/dormir.png' alt='icono dormido enemigo' />");
+                                $("#dormirEnemigo").html("<img src='../View/img/estados/dormir.png' alt='icono dormido enemigo' title='Dormido' />");
                             }
 
                             if(dmgHabilidad > 0){
@@ -716,7 +732,7 @@ var vecesAturdido = 0;
                         case "ataque2":
                             if(turnosBoostAtk2 == 0){
                                 turnosBoostAtk2 = 3;
-                                $("#atkPersonaje").append("<img src='../View/img/estados/boost_atk2.png' alt='icono de aumento masivo de ataque personaje' />");
+                                $("#atkPersonaje").html("<img src='../View/img/estados/boost_atk2.png' alt='icono de aumento masivo de ataque personaje' title='Aumento de ataque alto' />");
                                 activarLocura();
                             }
                             
@@ -750,7 +766,7 @@ var vecesAturdido = 0;
                                 if(aturdido == false){
                                     aturdido = true;
                                     vecesAturdido++;
-                                    $("#aturdirEnemigo").append("<img src='../View/img/estados/aturdir.png' alt='icono enemigo aturdido' />");
+                                    $("#aturdirEnemigo").html("<img src='../View/img/estados/aturdir.png' alt='icono enemigo aturdido' title='Aturdido' />");
                                 }else if(vecesAturdido == 1){
                                     vecesAturdido++;
                                 }
@@ -828,7 +844,8 @@ var vecesAturdido = 0;
     function ataqueNormal(nombrePersonaje, atk) {
 
         if(turno == false){
-            var dmg = atk + 10;
+            var dmg = atk + (atk * 0.1);
+            dmg = Math.ceil(dmg);
             dmg += aplicarVeneno();
             dmg += aplicarQuemadura();
             
@@ -860,7 +877,7 @@ var vecesAturdido = 0;
     function defender(nombrePersonaje) {
         if(turno == false){
             $("#textoCombate").html(nombrePersonaje + " se está defendiendo.");
-            $("#defensaPersonaje").html("<img src='../View/img/estados/def.png' alt='icono personaje defendiendose' />");
+            $("#defensaPersonaje").html("<img src='../View/img/estados/def.png' alt='icono personaje defendiendose' title='Defendiéndose' />");
             defenderse = true;
             turno = true;
             cambiarBotones();
@@ -900,7 +917,7 @@ var vecesAturdido = 0;
     <!-- Contenedor que contendrá la información del enemigo -->
     <div class="containerEnemigo">
         <div class="enemigo">
-            <img src="<?= $carpetaEnemigos.$data['enemigo']->getFoto() ?>" alt="<?= $data['enemigo']->getNombre() ?>">
+            <img src="<?= $carpetaEnemigos.$data['enemigo']->getFoto() ?>" alt="<?= $data['enemigo']->getNombre() ?>" title='<?= $data['enemigo']->getNombre() ?>'>
         </div>
         <p class="vida">
             <img src="../View/img/stats/vida.png" alt="vida enemigo"> 
@@ -935,23 +952,34 @@ var vecesAturdido = 0;
             <div class="stats">
                 <button class="btnStats" onclick="abrirVentanaEstadisticas(<?= $data['personajeSeleccionado']->getIdPersonaje() ?>)">Ver estadísticas</button>
                 <p class="pm btnStats">
+                    <span class="textoPM">
+                        PM:
+                    </span>
+
                     <span id="pmRestantes"> 
                         <?= $data['estadisticas']->getPm() ?> 
                     </span> 
-                / 
-                    <span>
-                        <?= $data['estadisticas']->getPm() ?>
+                
+                    <span class="pmTotal">
+                    /  <?= $data['estadisticas']->getPm() ?>
                     </span>
                 </p>
                 <p class="ph btnStats">
+                    <span class="textoPH">
+                        PH:
+                    </span>
                     <span id="phRestantes">
                         <?= $data['estadisticas']->getPh() ?> 
                     </span> 
-                        / 
-                    <span>
-                        <?= $data['estadisticas']->getPh() ?>
+                        
+                    <span class="phTotal">
+                    / <?= $data['estadisticas']->getPh() ?>
                     </span>
                 </p>
+
+                <button class="btnStats btnAyuda" onclick="abrirAyuda()">
+                    Ayuda
+                </button>
             </div>
 
             <div class="textoCombate">
@@ -996,7 +1024,7 @@ var vecesAturdido = 0;
         <div class="encabezadoVentana">
             <h3 id="nombrePersonaje"></h3>
         </div>
-
+    
 <!-- Inicio ventana modal de las estadísticas -->
 <div class="contenedorStats">
     <div class="stats">
@@ -1048,5 +1076,47 @@ var vecesAturdido = 0;
 
 </div>
 <!-- Fin ventana modal habilidades -->
+
+<!-- Comienzo ventana modal ayuda -->
+<div class="ventanaModalAyuda" id="ventanaAyuda">
+    <div class="encabezadoVentana">
+        <span>Información sobre el combate</span>
+        <img src="../View/img/cancelar.png" alt="Cerrar ventana modal" title="Cerrar ventana modal" onclick="abrirAyuda()">
+    </div>
+    
+    <div class="info">
+        <p>
+            <b>¿Cómo uso habilidades?</b> <br>
+           Para usar habilidades, pulsa el botón habilidades y después, pulsa el nombre de la habilidad para usarla.
+            <br>
+            Si la habilidad se muestra gris es porque no tienes PM/PH suficientes para usarla
+        </p>
+
+        <p>
+            <b>¿Qué son los diferentes iconos que aparecen junto a la vida?</b> <br>
+            Dejando el ratón encima de la imagen del icono, podrás ver el efecto que causa sobre el personaje que tiene el icono.
+        </p>
+        <p>
+            <b>¿Qué es el ataque normal?</b> <br>
+            Es un ataque que causa el daño de la stat de ataque de tu personaje mas un 10%
+        </p>
+
+        <p>
+            <b>¿Para qué sirve defenderse?</b> <br>
+            Defenderse bloquea el siguiente ataque enemigo por completo, pero los efectos de estado siguen aplicándose.
+        </p>
+
+        <p>
+            <b>¿Qué pasa si abandono o pierdo?</b> <br>
+            Contaría como derrota y perderías la mitad de los puntos que ganarías en esta misión.
+        </p>
+
+        <p>
+            <b>¿Qué pasa si gano?</b> <br>
+            Ganarías puntos para desbloquear el resto de misiones y experiencia para tu personaje.
+        </p>
+    </div>
+</div>
+<!-- Fin ventana modal ayuda -->
 </body>
 </html>

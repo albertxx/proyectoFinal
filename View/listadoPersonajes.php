@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../View/img/minilogo.jpg" />
-    <link rel="stylesheet" href="../View/css/crearPersonaje.css">
+    <link rel="stylesheet" href="../View/css/paginaPrincipal.css">
     <link rel="stylesheet" href="../View/css/listadoPersonajes.css">
     <script src="../jquery-3.4.1.js"></script>
     <title>Lista de personajes</title>
@@ -38,8 +38,20 @@
         if($(".ventanaModal").css("visibility") == "hidden"){
             $(".ventanaModal").css("visibility", "visible");
             $(".ventanaModalHabilidades").css("visibility", "hidden");
+            $("#ventanaAyuda").css("visibility", "hidden");
         }else{
             $(".ventanaModal").css("visibility", "hidden");
+        }
+    }
+
+    // Función para abrir la ventana de ayuda
+    function abrirAyuda() { 
+        if($("#ventanaAyuda").css("visibility") == "hidden"){
+            $("#ventanaAyuda").css("visibility", "visible");
+            $(".ventanaModal").css("visibility", "hidden");
+            $(".ventanaModalHabilidades").css("visibility", "hidden");
+        }else{
+            $("#ventanaAyuda").css("visibility", "hidden");
         }
     }
 
@@ -61,7 +73,7 @@
             $("#nombrePersonajeHabilidades").html(datosHabilidades[datosHabilidades.length-1].nombre_personaje);
             $("#tabla").html("");
             for (let i = 0; i < datosHabilidades.length-1; i++) {
-                if(datosHabilidades[datosHabilidades.length-1].nivelPersonaje < datosHabilidades[i].nivel_requerido){
+                if(parseInt(datosHabilidades[datosHabilidades.length-1].nivelPersonaje) < parseInt(datosHabilidades[i].nivel_requerido)){
                     $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'><img src='../View/img/bloq.png' alt='bloqueado'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
                 }else{
                     $("#tabla").append("<tr class='habilidad'><td class='nombreHabilidad'>" + datosHabilidades[i].nombre + ":</td><td class='descripcionHabilidad'>" + datosHabilidades[i].descripcion + "</td><td class='pm'>" + datosHabilidades[i].costePm + "</td><td class='ph'>" + datosHabilidades[i].costePh + "</td></tr>");
@@ -78,6 +90,7 @@
         if($(".ventanaModalHabilidades").css("visibility") == "hidden"){
             $(".ventanaModalHabilidades").css("visibility", "visible");
             $(".ventanaModal").css("visibility", "hidden");
+            $("#ventanaAyuda").css("visibility", "hidden");
         }else{
             $(".ventanaModalHabilidades").css("visibility", "hidden");
         }
@@ -108,6 +121,12 @@
         <form action="../Controller/c.guardarUsuario.php">
             <input type="submit" value="Volver a la página principal" class="btn">
         </form>
+
+        <span>
+            <button class="btn" onclick="abrirAyuda()">
+                Ayuda
+            </button>
+        </span>
     </div>
 
     <!-- Oro que actualmente tiene al jugador -->
@@ -121,8 +140,9 @@
 <!-- Inicio ventana modal -->
 <div class="ventanaModal">
 
-    <div class="encabezadoVentana">
+    <div class="encabezadoVentanaAyuda">
         <h3 id="nombrePersonaje"></h3>
+        <img src="../View/img/cancelar.png" alt="" onclick="abrirVentanaEstadisticas()">
     </div>
 
     <!-- Inicio ventana modal de las estadísticas -->
@@ -172,8 +192,9 @@
 <!-- Inicio ventana modal de las habilidades -->
 <div class="ventanaModalHabilidades">
     
-    <div class="encabezadoVentana">
+    <div class="encabezadoVentanaAyuda">
         <h3 id="nombrePersonajeHabilidades"></h3>
+        <img src="../View/img/cancelar.png" alt="Cerrar ventana modal" title="Cerrar ventana modal" onclick="abrirVentanaHabilidades()">
     </div>
     
     <div class="contenedorHabilidades">
@@ -182,6 +203,37 @@
 
 </div>
 <!-- Fin ventana modal de las habilidades -->
+
+<div class="ventanaModalAyuda" id="ventanaAyuda">
+        <div class="encabezadoVentanaAyuda">
+            <span>Información sobre la página de listado de personajes</span>
+            <img src="../View/img/cancelar.png" alt="Cerrar ventana modal" title="Cerrar ventana modal" onclick="abrirAyuda()">
+        </div>
+        
+        <div class="infoAyuda">
+            <p>
+                <b>¿Qué es la experiencia que se muestra junto a la imagen de mi personaje?</b> <br>
+                Es la experiencia que actualmente tiene tu personaje en ese nivel. Cada vez que suba de nivel, la experiencia volverá a 0.
+            </p>
+
+            <p>
+                <b>¿Dónde veo las estadísticas de mi personaje?</b> <br>
+                Sólo tienes que pulsar el botón de "Ver todas las estadísticas" y las podrás ver. Ahí también encontrarás la experiencia total que tu personaje necesita para subir de nivel.
+            </p>
+
+            <p>
+                <b>¿Cómo borro mi personaje?</b> <br>
+                Sólo tienes que pulsar el botón que está debajo de la imagen de tu personaje, y automáticamente se borrará una vez lo pulses.
+            </p>
+
+            <p>
+                <b>¿Qué significa el candado de las habilidades?</b> <br>
+                Significa que aún no las has desbloqueado. Las habilidades suelen desbloquearse cada 5 niveles. (1, 5, 10...)
+            </p>
+            <b>Como siempre, desde esta página puedes volver a las demás páginas de la web.</b>
+        </div>
+</div>
+
 <?php 
 
     for ($i=0; $i < count($data['personajes']); $i++) { 
